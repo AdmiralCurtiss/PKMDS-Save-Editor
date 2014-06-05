@@ -1251,7 +1251,7 @@
             this.txtBoxName.Size = new System.Drawing.Size(128, 20);
             this.txtBoxName.TabIndex = 1;
             this.txtBoxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtBoxName.TextChanged += new System.EventHandler(this.txtBoxName_TextChanged);
+            //this.txtBoxName.TextChanged += new System.EventHandler(this.txtBoxName_TextChanged);
             // 
             // btnNextBox
             // 

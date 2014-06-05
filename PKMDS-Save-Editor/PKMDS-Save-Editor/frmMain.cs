@@ -1123,9 +1123,7 @@ namespace PKMDS_Save_Editor
         {
             return CreateCursor((Bitmap)(img), xHotSpot, yHotSpot);
         }
-
         private const int bytesPerPixel = 4;
-
         public static Bitmap ChangeImageOpacity(Bitmap originalImage, double opacity)
         {
             if ((originalImage.PixelFormat & System.Drawing.Imaging.PixelFormat.Indexed) == System.Drawing.Imaging.PixelFormat.Indexed)

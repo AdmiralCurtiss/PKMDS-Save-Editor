@@ -109,31 +109,49 @@ namespace PKMDS_Save_Editor
         }
         private void SetSaveFile()
         {
-            this.splitMain.Enabled = true;
-            this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
-            txtBoxName.Enabled = true;
-            splitMain.Panel2.Enabled = true;
-            //gbMode.Enabled = true;
-            //UpdateParty();
-            //UpdateBox();
-            //UpdateBoxWallpaper();
-            //UpdateBoxName();
-            //UpdateBoxNameLabels();
-            //UpdateBoxCountLabels();
-            //UpdateBoxGrids();
-            for (int slot = 0; slot < 30; slot++) 
+            try
             {
-                //boxPics[slot].DataBindings.Add("Image", sav.PCStorage.Box(sav.CurrentBox).Pokemon[slot], "Icon");
+                this.splitMain.Enabled = true;
+                this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
+                btnPreviousBox.Enabled = (sav.CurrentBox != 0);
+                btnNextBox.Enabled = (sav.CurrentBox != 23);
+                txtBoxName.Enabled = true;
+                splitMain.Panel2.Enabled = true;
+                //gbMode.Enabled = true;
+                //UpdateParty();
+                //UpdateBox();
+                //UpdateBoxWallpaper();
+                //UpdateBoxName();
+                //UpdateBoxNameLabels();
+                //UpdateBoxCountLabels();
+                //UpdateBoxGrids();
+                for (int slot = 0; slot < 30; slot++)
+                {
+                    boxPics[slot].DataBindings.Add("Image", sav.PCStorage.Box(sav.CurrentBox).Pokemon[slot], "Icon", true);
+
+                    //sav.PCStorage.Box(sav.CurrentBox).Pokemon[slot].SpeciesID = (UInt16)(PKMDS.PKMSpecies.Psyduck);
+
+                    PKMDS.Pokemon pkm = sav.PCStorage.Box(sav.CurrentBox).Pokemon[slot];
+                    pkm.SpeciesID = 54;
+                    sav.SetStoredPokemon(pkm, sav.CurrentBox, slot);
+
+                    //PKMDS.Pokemon pkm = sav.PCStorage.Box(sav.CurrentBox).Pokemon[slot];
+                    //UInt16 species = pkm.SpeciesID;
+                    //Image icon = pkm.Icon;
+                    //boxPics[slot].Image = icon;
+                }
+                splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+                splitMain.Panel2.PerformLayout();
+                foreach (Panel pan in boxPanels)
+                {
+                    pan.BorderStyle = BorderStyle.None;
+                }
+                boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
             }
-            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
-            splitMain.Panel2.PerformLayout();
-            foreach (Panel pan in boxPanels)
+            catch (Exception ex)
             {
-                pan.BorderStyle = BorderStyle.None;
+                MessageBox.Show(ex.Message);
             }
-            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
         }
         //private void UpdateParty()
         //{

@@ -1194,5 +1194,113 @@ namespace PKMDS_Save_Editor
             //UpdateBox();
             //UpdateParty();
         }
+
+        private void reportToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            System.Collections.Generic.IList<PKMDS.Pokemon> currentbox = new List<PKMDS.Pokemon>();
+            int box = sav.CurrentBox;
+            for (int slot = 0; slot < 30; slot++)
+            {
+                currentbox.Add(sav.PCStorage.Box(box).Pokemon(slot));
+            }
+            System.Windows.Forms.Form frmDatagrid = new Form();
+            frmDatagrid.Size = new System.Drawing.Size(1500, 1000);
+            frmDatagrid.StartPosition = FormStartPosition.CenterScreen;
+            frmDatagrid.Shown += frmDataShown;
+            frmDatagrid.FormClosing += frmDataClosing;
+            DataGridView dgData = new DataGridView();
+            dgData.CellEndEdit += dgDataCellEndEdit;
+            dgData.CellBeginEdit += dgDataCellBeginEdit;
+            dgData.DataError += dgDataDataError;
+            dgData.CellFormatting += dgDataCellFormatting;
+            dgData.RowHeadersVisible = false;
+            dgData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            DataGridViewCellStyle style = dgData.DefaultCellStyle;
+            style.SelectionBackColor = Color.FromArgb(255, SelectionColor);
+            dgData.DefaultCellStyle = style;
+            //dgData.DefaultCellStyle.SelectionForeColor = Color.Red;
+            DataGridViewCellStyle altstyle = dgData.AlternatingRowsDefaultCellStyle;
+            altstyle.BackColor = Color.LightGray;
+            //altstyle.Font = new Font(style.Font, FontStyle.Bold);
+            dgData.AlternatingRowsDefaultCellStyle = altstyle;
+            dgData.Dock = DockStyle.Fill;
+            //dgData.AutoGenerateColumns = false;
+            frmDatagrid.Controls.Add(dgData);
+            dgData.DataSource = currentbox;
+            dgData.Columns["SpeciesName"].DisplayIndex = 0;
+            dgData.Columns["Icon"].DisplayIndex = 1;
+            dgData.Columns["Icon"].Frozen = true;
+
+            //string FieldName = "SpeciesID";
+            //int colindex = dgData.Columns.Add(FieldName, "HeaderText");
+            //dgData.Columns[colindex].DataPropertyName = FieldName;
+
+            //FieldName = "SpeciesName";
+            //colindex = dgData.Columns.Add(FieldName, "HeaderText");
+            //dgData.Columns[colindex].DataPropertyName = FieldName;
+
+            for (int i = 29; i >= 0; i--)
+            {
+                dgData.Rows[i].Visible = false;
+            }
+            frmDatagrid.ShowDialog();
+        }
+        private void frmDataShown(object sender, EventArgs e)
+        {
+            Form frmData = (Form)(sender);
+            DataGridView dgData = (DataGridView)(frmData.Controls[0]);
+            for (int i = 29; i >= 0; i--)
+            {
+                if (i > dgData.Rows.Count)
+                {
+                    i = dgData.Rows.Count - 1;
+                }
+                if (i > 0)
+                {
+                    if (dgData.Rows[i].Cells["SpeciesID"].Value.ToString() == "0")
+                    {
+                        dgData.Rows[i].Visible = false;
+                    }
+                }
+            }
+            dgData.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+        }
+        private void frmDataClosing(object sender, EventArgs e)
+        {
+            Form frmData = (Form)(sender);
+            DataGridView dgData = (DataGridView)(frmData.Controls[0]);
+        }
+        private void dgDataCellEndEdit(object sender, DataGridViewCellEventArgs e)
+        {
+            DataGridView dgData = (DataGridView)(sender);
+            try
+            {
+                dgData.InvalidateRow(e.RowIndex);
+            }
+            catch (Exception ex)
+            {
+                dgData.CancelEdit();
+                MessageBox.Show(ex.Message);
+            }
+        }
+        private void dgDataCellBeginEdit(object sender, EventArgs e)
+        {
+            //DataGridView dgData = (DataGridView)(sender);
+            //dgData.InvalidateRow(e.RowIndex);
+        }
+        private void dgDataDataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            DataGridView dgData = (DataGridView)(sender);
+            dgData.CancelEdit();
+            MessageBox.Show(e.Exception.Message);
+        }
+        private void dgDataCellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            var dgData = sender as DataGridView;
+            if (dgData.Rows[e.RowIndex].Selected)
+            {
+                e.CellStyle.Font = new Font(e.CellStyle.Font, FontStyle.Bold);
+            }
+        }
     }
 }

@@ -14,30 +14,36 @@ namespace PKMDS_Abstract_Test
     {
         public frmMain()
         {
+            PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
             InitializeComponent();
         }
         PKMDS.Save sav;
-        PKMDS.PCStorage_Pub pcstorage;
+        PKMDS.PCStorage_Pub pcstorage = new PKMDS.PCStorage_Pub();
+        PKMDS.Box_Pub currentbox = new PKMDS.Box_Pub();
+        frmBoxes BoxesForm = new frmBoxes();
+        BindingSource controlsbinding = new BindingSource();
+        string filename = @"F:\Google Drive\Home Desktop\Saves\Mike B2 Sav_AbstractTest.sav";
         private void frmMain_Load(object sender, EventArgs e)
         {
-            txtSaveTrainerName.MaxLength = 8;
-            PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
-            sav = new PKMDS.Save(@"F:\Google Drive\Home Desktop\Saves\Mike B2 Sav_AbstractTest.sav");
-            //this.Text = sav.TrainerName;
+            sav = new PKMDS.Save(filename);
             pcstorage = sav.PCStorage;
-            numSpeciesID.DataBindings.Add("Value", pcstorage[0][0], "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            pbSprite.DataBindings.Add("Image", pcstorage[0][0], "Sprite", false, DataSourceUpdateMode.OnPropertyChanged, null);
-            txtSaveTrainerName.DataBindings.Add("Text", sav, "TrainerName", false, DataSourceUpdateMode.OnPropertyChanged, "");
-            this.DataBindings.Add("Text", sav, "TrainerName", false, DataSourceUpdateMode.OnPropertyChanged, "");
+            currentbox = pcstorage[0];
+            controlsbinding.DataSource = currentbox[0];
+            numSpeciesID.DataBindings.Add("Value", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", false, DataSourceUpdateMode.OnPropertyChanged, null);
+            pbIcon.DataBindings.Add("Image", controlsbinding, "Icon", false, DataSourceUpdateMode.OnPropertyChanged, null);
+            numSpeciesID.Minimum = 1;
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {
-            sav.WriteToFile(@"F:\Google Drive\Home Desktop\Saves\Mike B2 Sav_AbstractTest.sav");
+            sav.WriteToFile(filename);
             PKMDS.SQL.CloseDB();
         }
-        private void btnTest2_Click(object sender, EventArgs e)
+        private void btnBoxesForm_Click(object sender, EventArgs e)
         {
-            pcstorage[0][0].SpeciesID = 300;
+            BoxesForm.SetPCStorage(pcstorage, 0);
+            BoxesForm.ShowDialog();
+            controlsbinding.ResetBindings(false);
         }
     }
 }

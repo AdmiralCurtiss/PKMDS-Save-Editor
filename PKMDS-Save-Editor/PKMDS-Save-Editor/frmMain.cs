@@ -11,6 +11,9 @@ namespace PKMDS_Save_Editor
 {
     public partial class frmMain : Form
     {
+        int box;
+        PKMDS.PCStorage_Pub pcstorage;
+        PKMDS.Box_Pub currentbox;
         private enum Mode
         {
             Single,
@@ -27,9 +30,9 @@ namespace PKMDS_Save_Editor
         string title = "";
         private string savefile = "";
         PKMDS.Save sav = new PKMDS.Save();
-        PKMDS.Save tempsav = new PKMDS.Save();
-        PKMDS.Pokemon pkm_from = new PKMDS.Pokemon();
-        PKMDS.Pokemon pkm_to = new PKMDS.Pokemon();
+        //PKMDS.Save tempsav = new PKMDS.Save();
+        PKMDS.PokemonData pkm_from = new PKMDS.Pokemon/*Data*/();
+        PKMDS.PokemonData pkm_to = new PKMDS.Pokemon/*Data*/();
         frmPKMViewer pkmviewer = new frmPKMViewer();
         bool dragfromparty = false;
         bool dragtoparty = false;
@@ -57,15 +60,16 @@ namespace PKMDS_Save_Editor
                     try
                     {
                         savefile = SaveFileOpen.FileName;
-                        tempsav = PKMDS.ReadSaveFile(savefile);
+                        /*temp*/
+                        sav = PKMDS.ReadSaveFile(savefile);
                         string message = "";
-                        if (!tempsav.Validate(out message))
+                        if (!/*temp*/sav.Validate(out message))
                         {
                             throw new Exception(message);
                         }
                         savesavToolStripMenuItem.Enabled = false;
                         uiset = false;
-                        sav = tempsav;
+                        //sav = tempsav;
                         SetSaveFile();
                         uiset = true;
                         savesavToolStripMenuItem.Enabled = true;
@@ -84,6 +88,7 @@ namespace PKMDS_Save_Editor
         }
         private void savesavToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            sav.CurrentBox = box;
             SaveFileSave.FileName = "";
             if (SaveFileSave.ShowDialog() != DialogResult.Cancel)
             {
@@ -92,8 +97,16 @@ namespace PKMDS_Save_Editor
                     sav.WriteToFile(SaveFileSave.FileName);
                 }
             }
+            pcstorage = new PKMDS.PCStorage_Pub(sav.PCStorage);
+            currentbox = pcstorage[box];
         }
-        private PKMDS.Pokemon ViewPokemon(PKMDS.Pokemon pkm)
+        private PKMDS.Pokemon ViewPokemon(PKMDS.Pokemon/*Data*/ pkm)
+        {
+            pkmviewer.SetPokemon(pkm);
+            pkmviewer.ShowDialog();
+            return pkmviewer.SharedPokemon;
+        }
+        private PKMDS.Pokemon ViewPokemon(PKMDS.PokemonData pkm)
         {
             pkmviewer.SetPokemon(pkm);
             pkmviewer.ShowDialog();
@@ -101,156 +114,187 @@ namespace PKMDS_Save_Editor
         }
         private PKMDS.PartyPokemon ViewPokemon(PKMDS.PartyPokemon ppkm)
         {
-            pkmviewer.SetPokemon(ppkm.PokemonData.Clone());
-            pkmviewer.ShowDialog();
+            //pkmviewer.SetPokemon(ppkm.Pokemon/*Data*/.Clone());
+            //pkmviewer.ShowDialog();
             PKMDS.PartyPokemon newppkm = new PKMDS.PartyPokemon();
-            newppkm.PokemonData = pkmviewer.SharedPokemon.Clone();
+            //newppkm.Pokemon/*Data*/ = pkmviewer.SharedPokemon.Clone();
             return newppkm;
         }
+        //PKMDS.Pokemon apkm;
         private void SetSaveFile()
         {
             this.splitMain.Enabled = true;
             this.Text = title + " - " + sav.TrainerName + " (" + sav.TID.ToString("00000") + ")";
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
+            box = /*temp*/sav.CurrentBox;
+            pcstorage = new PKMDS.PCStorage_Pub(sav.PCStorage);
+            currentbox = pcstorage[box];
+            btnPreviousBox.Enabled = (box != 0);
+            btnNextBox.Enabled = (box != 23);
             txtBoxName.Enabled = true;
             splitMain.Panel2.Enabled = true;
             //gbMode.Enabled = true;
-            UpdateParty();
             UpdateBox();
+
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    boxPics[i].DataBindings.Clear();
+            //    boxPics[i].DataBindings.Add("Image", currentbox[i], "Icon", true, DataSourceUpdateMode.OnValidation, null);
+            //}
+
+            //apkm = currentbox[0].Pokemon;
+            pbBoxSlot01.DataBindings.Add("Image", /*apkm*/currentbox[0], "Icon", true, DataSourceUpdateMode.OnValidation, null);
+            /*apkm*/
+            currentbox[0].SpeciesID = 150;
+
+            UpdateParty();
             UpdateBoxWallpaper();
             UpdateBoxName();
             UpdateBoxNameLabels();
             UpdateBoxCountLabels();
             UpdateBoxGrids();
-            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+            splitMain.Panel2.VerticalScroll.Value = (70 * box);
             splitMain.Panel2.PerformLayout();
             foreach (Panel pan in boxPanels)
             {
                 pan.BorderStyle = BorderStyle.None;
             }
-            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
+            boxPanels[box].BorderStyle = BorderStyle.FixedSingle;
         }
         private void UpdateParty()
         {
-            switch (mode)
-            {
-                case Mode.Single:
-                    for (int partySlot = 0; partySlot < 6; partySlot++)
-                    {
-                        PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
-                        pokemon = sav.GetPartyPokemon(partySlot).PokemonData;
-                        if ((pokemon.SpeciesID != 0) && (partySlot < sav.PartySize))
-                        {
-                            partyPics[partySlot].Image = pokemon.Icon;
-                        }
-                        else
-                        {
-                            partyPics[partySlot].Image = null;
-                        }
-                    }
-                    break;
-                case Mode.Group:
+            //switch (mode)
+            //{
+            //    case Mode.Single:
+            //        for (int partySlot = 0; partySlot < 6; partySlot++)
+            //        {
+            //            PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
+            //            pokemon = sav.GetPartyPokemon(partySlot).Pokemon/*Data*/;
+            //            if ((pokemon.SpeciesID != 0) && (partySlot < sav.PartySize))
+            //            {
+            //                partyPics[partySlot].Image = pokemon.Icon;
+            //            }
+            //            else
+            //            {
+            //                partyPics[partySlot].Image = null;
+            //            }
+            //        }
+            //        break;
+            //    case Mode.Group:
 
-                    break;
-                case Mode.Item:
-                    for (int slot = 0; slot < 6; slot++)
-                    {
-                        PKMDS.Pokemon pkm = new PKMDS.Pokemon();
-                        pkm = sav.GetPartyPokemon(slot).PokemonData;
-                        if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0) && (slot < sav.PartySize))
-                        {
-                            partyPics[slot].Image = pkm.ItemPic;
-                        }
-                        else
-                        {
-                            partyPics[slot].Image = null;
-                        }
-                    }
-                    break;
-            }
-            lblPartySize.Text = "Party - " + sav.PartySize.ToString() + " / 6";
-            sav.RecalculateParty();
+            //        break;
+            //    case Mode.Item:
+            //        for (int slot = 0; slot < 6; slot++)
+            //        {
+            //            PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+            //            pkm = sav.GetPartyPokemon(slot).Pokemon/*Data*/;
+            //            if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0) && (slot < sav.PartySize))
+            //            {
+            //                partyPics[slot].Image = pkm.ItemPic;
+            //            }
+            //            else
+            //            {
+            //                partyPics[slot].Image = null;
+            //            }
+            //        }
+            //        break;
+            //}
+            //lblPartySize.Text = "Party - " + sav.PartySize.ToString() + " / 6";
+            //sav.RecalculateParty();
         }
         private void UpdateBox()
         {
-            switch (mode)
-            {
-                case Mode.Single:
-                    PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
-                    for (int boxSlot = 0; boxSlot < 30; boxSlot++)
-                    {
-                        pokemon = sav.GetStoredPokemon(sav.CurrentBox, boxSlot);
-                        if (pokemon.SpeciesID != 0)
-                        {
-                            boxPics[boxSlot].Image = pokemon.Icon;
-                        }
-                        else
-                        {
-                            boxPics[boxSlot].Image = null;
-                        }
-                    }
-                    break;
-                case Mode.Group:
+            currentbox = pcstorage[box];
 
-                    break;
-                case Mode.Item:
-                    for (int slot = 0; slot < 30; slot++)
-                    {
-                        PKMDS.Pokemon pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
-                        if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0))
-                        {
-                            boxPics[slot].Image = pkm.ItemPic;
-                        }
-                        else
-                        {
-                            boxPics[slot].Image = null;
-                        }
-                    }
-                    break;
-                default:
-                    break;
-            }
+            //try
+            //{
+            //    for (int i = 0; i < 30; i++)
+            //    {
+            //        boxPics[i].DataBindings.Clear();
+            //        boxPics[i].DataBindings.Add("Image", currentbox[i].Pokemon, "Icon", true, DataSourceUpdateMode.OnValidation, null);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show(ex.Message);
+            //}
+
+            //switch (mode)
+            //{
+            //    case Mode.Single:
+            //        PKMDS.Pokemon pokemon = new PKMDS.Pokemon();
+            //        for (int boxSlot = 0; boxSlot < 30; boxSlot++)
+            //        {
+            //            pokemon = sav.GetStoredPokemon(box, boxSlot);
+            //            if (pokemon.SpeciesID != 0)
+            //            {
+            //                boxPics[boxSlot].Image = pokemon.Icon;
+            //            }
+            //            else
+            //            {
+            //                boxPics[boxSlot].Image = null;
+            //            }
+            //        }
+            //        break;
+            //    case Mode.Group:
+
+            //        break;
+            //    case Mode.Item:
+            //        for (int slot = 0; slot < 30; slot++)
+            //        {
+            //            PKMDS.Pokemon pkm = sav.GetStoredPokemon(box, slot);
+            //            if ((pkm.SpeciesID != 0) && (pkm.ItemID != 0))
+            //            {
+            //                boxPics[slot].Image = pkm.ItemPic;
+            //            }
+            //            else
+            //            {
+            //                boxPics[slot].Image = null;
+            //            }
+            //        }
+            //        break;
+            //    default:
+            //        break;
+            //}
         }
         private void UpdateBoxWallpaper()
         {
-            pnlBox.BackgroundImage = sav.GetBoxWallpaper(sav.CurrentBox);
+            //pnlBox.BackgroundImage = sav.GetBoxWallpaper(box);
         }
         private void UpdateBoxName()
         {
-            txtBoxName.Text = sav.GetBoxName(sav.CurrentBox);
+            //txtBoxName.Text = sav.GetBoxName(box);
         }
-        private void UpdateBoxNameLabel(int box)
+        private void UpdateBoxNameLabel(int boxnum)
         {
-            boxNameLabels[box].Text = sav.GetBoxName(box);
+            //boxNameLabels[box].Text = sav.GetBoxName(box);
         }
         private void UpdateBoxNameLabels()
         {
-            for (int box = 0; box < 24; box++)
+            for (int boxnum = 0; boxnum < 24; boxnum++)
             {
-                UpdateBoxNameLabel(box);
+                UpdateBoxNameLabel(boxnum);
             }
         }
-        private void UpdateBoxCountLabel(int box)
+        private void UpdateBoxCountLabel(int boxnum)
         {
-            boxcountLabels[box].Text = sav.BoxCount(box).ToString() + "/30";
+            //boxcountLabels[box].Text = sav.BoxCount(box).ToString() + "/30";
         }
         private void UpdateBoxCountLabels()
         {
-            for (int box = 0; box < 24; box++)
+            for (int boxnum = 0; boxnum < 24; boxnum++)
             {
-                UpdateBoxCountLabel(box);
+                UpdateBoxCountLabel(boxnum);
             }
         }
-        private void UpdateBoxGrid(int box)
+        private void UpdateBoxGrid(int boxnum)
         {
-            boxGridPics[box].Image = sav.GetBoxGrid(box);
+            //boxGridPics[box].Image = sav.GetBoxGrid(box);
         }
         private void UpdateBoxGrids()
         {
-            for (int box = 0; box < 24; box++)
+            for (int boxnum = 0; boxnum < 24; boxnum++)
             {
-                UpdateBoxGrid(box);
+                UpdateBoxGrid(boxnum);
             }
         }
         private void frmMain_Load(object sender, EventArgs e)
@@ -405,15 +449,16 @@ namespace PKMDS_Save_Editor
                 try
                 {
                     savefile = argfilename;
-                    tempsav = PKMDS.ReadSaveFile(savefile);
+                    /*temp*/
+                    sav = PKMDS.ReadSaveFile(savefile);
                     string message = "";
-                    if (!tempsav.Validate(out message))
+                    if (!/*temp*/sav.Validate(out message))
                     {
                         throw new Exception(message);
                     }
                     savesavToolStripMenuItem.Enabled = false;
                     uiset = false;
-                    sav = tempsav;
+                    //sav = tempsav;
                     SetSaveFile();
                     uiset = true;
                     savesavToolStripMenuItem.Enabled = true;
@@ -425,46 +470,55 @@ namespace PKMDS_Save_Editor
                 }
             }
             lblPartySize.Text = "";
+            //currentbox.CollectionChanged += BoxUpdated;
+
+            //int thissize = System.Runtime.InteropServices.Marshal.SizeOf(typeof(PKMDS.Pokemon));
+            //MessageBox.Show(thissize.ToString());
+        }
+        private void BoxUpdated(Object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            PKMDS.Box_Pub thisbox = (PKMDS.Box_Pub)(sender);
+            
         }
         private void txtBoxName_TextChanged(object sender, EventArgs e)
         {
             if (uiset)
             {
-                sav.SetBoxName(sav.CurrentBox, txtBoxName.Text);
-                UpdateBoxNameLabel(sav.CurrentBox);
+                //sav.SetBoxName(box, txtBoxName.Text);
+                UpdateBoxNameLabel(box);
             }
         }
         private void btnPreviousBox_Click(object sender, EventArgs e)
         {
-            sav.CurrentBox--;
+            box--;
             UpdateBox();
             UpdateBoxWallpaper();
             UpdateBoxName();
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
-            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+            btnPreviousBox.Enabled = (box != 0);
+            btnNextBox.Enabled = (box != 23);
+            splitMain.Panel2.VerticalScroll.Value = (70 * box);
             splitMain.Panel2.PerformLayout();
             foreach (Panel pan in boxPanels)
             {
                 pan.BorderStyle = BorderStyle.None;
             }
-            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
+            boxPanels[box].BorderStyle = BorderStyle.FixedSingle;
         }
         private void btnNextBox_Click(object sender, EventArgs e)
         {
-            sav.CurrentBox++;
+            box++;
             UpdateBox();
             UpdateBoxWallpaper();
             UpdateBoxName();
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
-            splitMain.Panel2.VerticalScroll.Value = (70 * sav.CurrentBox);
+            btnPreviousBox.Enabled = (box != 0);
+            btnNextBox.Enabled = (box != 23);
+            splitMain.Panel2.VerticalScroll.Value = (70 * box);
             splitMain.Panel2.PerformLayout();
             foreach (Panel pan in boxPanels)
             {
                 pan.BorderStyle = BorderStyle.None;
             }
-            boxPanels[sav.CurrentBox].BorderStyle = BorderStyle.FixedSingle;
+            boxPanels[box].BorderStyle = BorderStyle.FixedSingle;
         }
         private void pbSlot_DoubleClick(object sender, EventArgs e)
         {
@@ -472,26 +526,27 @@ namespace PKMDS_Save_Editor
             PictureBox pb = (PictureBox)(sender);
             if (pb.Name.Contains("Party"))
             {
-                int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
-                slot--;
-                PKMDS.Pokemon pkm = sav.GetPartyPokemon(slot).PokemonData;
-                if ((pkm != null) && (pkm.SpeciesID != 0))
-                {
-                    sav.SetPartyPokemon(ViewPokemon(sav.GetPartyPokemon(slot)), slot);
-                    UpdateParty();
-                }
+                //int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                //slot--;
+                //PKMDS.Pokemon pkm = sav.GetPartyPokemon(slot).Pokemon/*Data*/;
+                //if ((pkm != null) && (pkm.SpeciesID != 0))
+                //{
+                //    sav.SetPartyPokemon(ViewPokemon(sav.GetPartyPokemon(slot)), slot);
+                //    UpdateParty();
+                //}
             }
             if (pb.Name.Contains("Box"))
             {
                 int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
                 slot--;
-                PKMDS.Pokemon pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
-                if ((pkm != null) && (pkm.SpeciesID != 0))
+                //PKMDS.Pokemon pkm = currentbox[slot]; // sav.GetStoredPokemon(box, slot);
+                if ((currentbox[slot] != null) && (currentbox[slot].SpeciesID != 0))
                 {
-                    sav.SetStoredPokemon(ViewPokemon(sav.GetStoredPokemon(sav.CurrentBox, slot)), sav.CurrentBox, slot);
+                    currentbox[slot].Data = ViewPokemon(currentbox[slot]).Data;
+                    //sav.SetStoredPokemon(ViewPokemon(sav.GetStoredPokemon(box, slot)), box, slot);
                 }
                 UpdateBox();
-                UpdateBoxGrid(sav.CurrentBox);
+                UpdateBoxGrid(box);
             }
         }
         private void pbPartyBoxSlot_MouseDown(object sender, MouseEventArgs e)
@@ -512,28 +567,29 @@ namespace PKMDS_Save_Editor
                         slot--;
                         if (pb.Name.Contains("Party"))
                         {
-                            if (sav.GetPartyPokemon(slot).PokemonData.SpeciesID != 0)
-                            {
-                                if (sav.PartySize > 1)
-                                {
-                                    pkm_from = sav.GetPartyPokemon(slot).PokemonData;
-                                    dragfromparty = true;
-                                    frombox = -1;
-                                    fromslot = slot;
-                                    partyPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
-                                }
-                            }
+                            //if (sav.GetPartyPokemon(slot).Pokemon/*Data*/.SpeciesID != 0)
+                            //{
+                            //    if (sav.PartySize > 1)
+                            //    {
+                            //        pkm_from = sav.GetPartyPokemon(slot).Pokemon/*Data*/;
+                            //        dragfromparty = true;
+                            //        frombox = -1;
+                            //        fromslot = slot;
+                            //        partyPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
+                            //    }
+                            //}
                         }
                         if (pb.Name.Contains("Box"))
                         {
-                            if (sav.GetStoredPokemon(sav.CurrentBox, slot).SpeciesID != 0)
-                            {
-                                pkm_from = sav.GetStoredPokemon(sav.CurrentBox, slot);
-                                dragfromparty = false;
-                                frombox = sav.CurrentBox;
-                                fromslot = slot;
-                                boxPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
-                            }
+                            //PKMDS.Pokemon pkm = currentbox[slot];
+                            //if (pkm.SpeciesID != 0) // (sav.GetStoredPokemon(box, slot).SpeciesID != 0)
+                            //{
+                            //    pkm_from = pkm; // sav.GetStoredPokemon(box, slot);
+                            //    dragfromparty = false;
+                            //    frombox = box;
+                            //    fromslot = slot;
+                            //    boxPics[slot].DoDragDrop(pkm_from, DragDropEffects.Move);
+                            //}
                         }
                         break;
                     case Mode.Group:
@@ -555,51 +611,51 @@ namespace PKMDS_Save_Editor
             slot--;
             if (pb.Name.Contains("Party"))
             {
-                dragtoparty = true;
-                //dragtobox = false;
-                tobox = -1;
-                toslot = slot;
-                if (dragfromparty)
-                {
-                    if (dragtoparty)
-                    {
-                        if (pkm_to.SpeciesID == 0)
-                        {
-                            sav.WithdrawPokemon(sav.GetPartyPokemon(fromslot).PokemonData);
-                            sav.RemovePartyPokemon(fromslot);
-                        }
-                        else
-                        {
-                            PKMDS.SwapPartyParty(sav, fromslot, toslot);
-                        }
-                        UpdateParty();
-                    }
-                }
-                else
-                {
-                    if (dragtoparty)
-                    {
-                        if (pkm_to.SpeciesID == 0)
-                        {
-                            sav.WithdrawPokemon(sav.GetStoredPokemon(frombox, fromslot));
-                            sav.RemoveStoredPokemon(frombox, fromslot);
-                        }
-                        else
-                        {
-                            PKMDS.SwapBoxParty(sav, frombox, fromslot, toslot);
-                        }
-                        UpdateParty();
-                        UpdateBox();
-                        UpdateBoxGrid(sav.CurrentBox);
-                        UpdateBoxCountLabel(sav.CurrentBox);
-                    }
-                }
+                //dragtoparty = true;
+                ////dragtobox = false;
+                //tobox = -1;
+                //toslot = slot;
+                //if (dragfromparty)
+                //{
+                //    if (dragtoparty)
+                //    {
+                //        if (pkm_to.SpeciesID == 0)
+                //        {
+                //            sav.WithdrawPokemon(sav.GetPartyPokemon(fromslot).Pokemon/*Data*/);
+                //            sav.RemovePartyPokemon(fromslot);
+                //        }
+                //        else
+                //        {
+                //            PKMDS.SwapPartyParty(sav, fromslot, toslot);
+                //        }
+                //        UpdateParty();
+                //    }
+                //}
+                //else
+                //{
+                //    if (dragtoparty)
+                //    {
+                //        if (pkm_to.SpeciesID == 0)
+                //        {
+                //            sav.WithdrawPokemon(sav.GetStoredPokemon(frombox, fromslot));
+                //            sav.RemoveStoredPokemon(frombox, fromslot);
+                //        }
+                //        else
+                //        {
+                //            PKMDS.SwapBoxParty(sav, frombox, fromslot, toslot);
+                //        }
+                //        UpdateParty();
+                //        UpdateBox();
+                //        UpdateBoxGrid(box);
+                //        UpdateBoxCountLabel(box);
+                //    }
+                //}
             }
             if (pb.Name.Contains("Box"))
             {
                 dragtoparty = false;
                 //dragtobox = false;
-                tobox = sav.CurrentBox;
+                tobox = box;
                 toslot = slot;
                 if (dragfromparty)
                 {
@@ -612,8 +668,8 @@ namespace PKMDS_Save_Editor
                         }
                         UpdateParty();
                         UpdateBox();
-                        UpdateBoxGrid(sav.CurrentBox);
-                        UpdateBoxCountLabel(sav.CurrentBox);
+                        UpdateBoxGrid(box);
+                        UpdateBoxCountLabel(box);
                     }
                 }
                 else
@@ -623,8 +679,8 @@ namespace PKMDS_Save_Editor
                         PKMDS.SwapBoxBox(sav, frombox, fromslot, tobox, toslot);
                         UpdateParty();
                         UpdateBox();
-                        UpdateBoxGrid(sav.CurrentBox);
-                        UpdateBoxCountLabel(sav.CurrentBox);
+                        UpdateBoxGrid(box);
+                        UpdateBoxCountLabel(box);
                     }
                 }
             }
@@ -643,15 +699,15 @@ namespace PKMDS_Save_Editor
                     slot--;
                     if (pb.Name.Contains("Party"))
                     {
-                        dragtoparty = true;
-                        //dragtobox = false;
-                        pkm_to = sav.GetPartyPokemon(slot).PokemonData;
+                        //dragtoparty = true;
+                        ////dragtobox = false;
+                        //pkm_to = sav.GetPartyPokemon(slot).Pokemon/*Data*/;
                     }
                     if (pb.Name.Contains("Box"))
                     {
                         dragtoparty = false;
                         //dragtobox = false;
-                        pkm_to = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                        pkm_to = currentbox[slot]; // sav.GetStoredPokemon(box, slot);
                     }
                     e.Effect = DragDropEffects.Move;
                     //this.Cursor = CreateCursor(dragpkm.Icon, 3, 3);
@@ -669,14 +725,14 @@ namespace PKMDS_Save_Editor
         }
         private void pbBoxGrid_DragEnter(object sender, DragEventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             PictureBox pb = (PictureBox)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
             if (e.Data != null)
             {
                 PKMDS.Pokemon dragpkm = (PKMDS.Pokemon)(e.Data.GetData("PKMDS_CS.PKMDS+Pokemon"));
-                if ((dragpkm.SpeciesID != 0) && (sav.BoxCount(box) < 30))
+                if ((dragpkm.SpeciesID != 0) && (sav.BoxCount(boxnum) < 30))
                 {
                     pkm_to = dragpkm;
                     e.Effect = DragDropEffects.Move;
@@ -695,19 +751,19 @@ namespace PKMDS_Save_Editor
         }
         private void pbBoxGrid_DragDrop(object sender, DragEventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             PictureBox pb = (PictureBox)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
             dragtoparty = false;
             //dragtobox = true;
-            tobox = box;
+            tobox = boxnum;
             toslot = -1;
             if (fromslot != -1)
             {
                 if (dragfromparty)
                 {
-                    sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
+                    //sav.DepositPokemon(sav.GetPartyPokemon(fromslot).PokemonData, tobox);
                     sav.RemovePartyPokemon(fromslot);
                     if (pkm_to.SpeciesID == 0)
                     {
@@ -719,8 +775,8 @@ namespace PKMDS_Save_Editor
                 {
                     if (frombox != -1)
                     {
-                        sav.DepositPokemon(sav.GetStoredPokemon(frombox, fromslot), tobox);
-                        sav.RemoveStoredPokemon(frombox, fromslot);
+                        //sav.DepositPokemon(sav.GetStoredPokemon(frombox, fromslot), tobox);
+                        //sav.RemoveStoredPokemon(frombox, fromslot);
                         UpdateBox();
                         UpdateBoxGrid(frombox);
                         UpdateBoxCountLabel(frombox);
@@ -739,13 +795,13 @@ namespace PKMDS_Save_Editor
                 switch (mode)
                 {
                     case Mode.Single:
-                        int box = 0;
+                        int boxnum = 0;
                         PictureBox pb = (PictureBox)(sender);
-                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-                        box--;
+                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+                        boxnum--;
                         dragtoparty = false;
                         //dragtobox = true;
-                        tobox = box;
+                        tobox = boxnum;
                         toslot = -1;
                         break;
                     case Mode.Group:
@@ -762,77 +818,78 @@ namespace PKMDS_Save_Editor
         }
         private void lblBoxGrid_Click(object sender, EventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             Label pb = (Label)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            sav.CurrentBox = box;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
+            box = boxnum;
             UpdateBox();
             UpdateBoxWallpaper();
             UpdateBoxName();
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
+            btnPreviousBox.Enabled = (box != 0);
+            btnNextBox.Enabled = (box != 23);
             foreach (Panel pan in boxPanels)
             {
                 pan.BorderStyle = BorderStyle.None;
             }
-            boxPanels[box].BorderStyle = BorderStyle.FixedSingle;
+            boxPanels[boxnum].BorderStyle = BorderStyle.FixedSingle;
         }
         private void lblBoxGrid_MouseEnter(object sender, EventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             Label pb = (Label)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            boxPanels[box].BackColor = SelectionColor;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
+            boxPanels[boxnum].BackColor = SelectionColor;
             this.splitMain.Panel2.Focus();
         }
         private void lblBoxGrid_MouseLeave(object sender, EventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             Label pb = (Label)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            boxPanels[box].BackColor = Color.Transparent;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
+            boxPanels[boxnum].BackColor = Color.Transparent;
         }
         private void pbBoxGrid_Click(object sender, EventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             PictureBox pb = (PictureBox)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            sav.CurrentBox = box;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
+            box = boxnum;
+            //sav.CurrentBox = box;
             UpdateBox();
             UpdateBoxWallpaper();
             UpdateBoxName();
-            btnPreviousBox.Enabled = (sav.CurrentBox != 0);
-            btnNextBox.Enabled = (sav.CurrentBox != 23);
+            btnPreviousBox.Enabled = (boxnum != 0);
+            btnNextBox.Enabled = (boxnum != 23);
             foreach (Panel pan in boxPanels)
             {
                 pan.BorderStyle = BorderStyle.None;
             }
-            boxPanels[box].BorderStyle = BorderStyle.FixedSingle;
+            boxPanels[boxnum].BorderStyle = BorderStyle.FixedSingle;
         }
         private void pbBoxGrid_MouseEnter(object sender, EventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             PictureBox pb = (PictureBox)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
             dragtoparty = false;
             //dragtobox = true;
-            tobox = box;
+            tobox = boxnum;
             toslot = -1;
-            boxPanels[box].BackColor = SelectionColor;
+            boxPanels[boxnum].BackColor = SelectionColor;
             this.splitMain.Panel2.Focus();
         }
         private void pbBoxGrid_MouseLeave(object sender, EventArgs e)
         {
-            int box = 0;
+            int boxnum = 0;
             PictureBox pb = (PictureBox)(sender);
-            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
-            box--;
-            boxPanels[box].BackColor = Color.Transparent;
+            int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out boxnum);
+            boxnum--;
+            boxPanels[boxnum].BackColor = Color.Transparent;
         }
         private void pbPartyBoxSlot_Click(object sender, EventArgs e)
         {
@@ -853,22 +910,22 @@ namespace PKMDS_Save_Editor
             PictureBox pb = (PictureBox)(sender);
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
-            PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+            PKMDS.PokemonData pkm = new PKMDS.Pokemon();
             if (pb.Name.Contains("Party"))
             {
-                if (sav.GetPartyPokemon(slot).PokemonData.SpeciesID != 0)
-                {
-                    if (sav.PartySize >= 1)
-                    {
-                        pkm = sav.GetPartyPokemon(slot).PokemonData;
-                    }
-                }
+                //if (sav.GetPartyPokemon(slot).Pokemon/*Data*/.SpeciesID != 0)
+                //{
+                //    if (sav.PartySize >= 1)
+                //    {
+                //        pkm = sav.GetPartyPokemon(slot).Pokemon/*Data*/;
+                //    }
+                //}
             }
             if (pb.Name.Contains("Box"))
             {
-                if (sav.GetStoredPokemon(sav.CurrentBox, slot).SpeciesID != 0)
+                if (currentbox[slot].SpeciesID != 0) // (sav.GetStoredPokemon(box, slot).SpeciesID != 0)
                 {
-                    pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                    pkm = currentbox[slot];// sav.GetStoredPokemon(box, slot);
                 }
             }
             pb.BackColor = SelectionColor;
@@ -887,7 +944,18 @@ namespace PKMDS_Save_Editor
             pb.BackColor = Color.Transparent;
             ClearPreview();
         }
-        private void PreviewPokemon(PKMDS.Pokemon pkm)
+        private void PreviewPokemon(PKMDS.Pokemon/*Data*/ pkm)
+        {
+            pbSprite.Image = pkm.Sprite;
+            pbGender.Image = pkm.GenderIcon;
+            pbHeldItem.Image = pkm.ItemPic;
+            pbBall.Image = pkm.BallPic;
+            pbShiny.Image = pkm.ShinyIcon;
+            lblHeldItem.Text = PKMDS.GetItemName(pkm.ItemID);
+            lblNickname.Text = pkm.Nickname;
+            lblLevel.Text = "Level " + pkm.Level.ToString("");
+        }
+        private void PreviewPokemon(PKMDS.PokemonData pkm)
         {
             pbSprite.Image = pkm.Sprite;
             pbGender.Image = pkm.GenderIcon;
@@ -925,27 +993,28 @@ namespace PKMDS_Save_Editor
                     PictureBox pb = (PictureBox)(owner.SourceControl);
                     if (pb.Name.Contains("Party"))
                     {
-                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
-                        slot--;
-                        PKMDS.Pokemon pkm = sav.GetPartyPokemon(slot).PokemonData;
-                        if ((pkm != null) && (pkm.SpeciesID != 0))
-                        {
-                            sav.SetPartyPokemon(ViewPokemon(sav.GetPartyPokemon(slot)), slot);
-                            UpdateParty();
-                        }
+                        //int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        //slot--;
+                        //PKMDS.Pokemon pkm = sav.GetPartyPokemon(slot).Pokemon/*Data*/;
+                        //if ((pkm != null) && (pkm.SpeciesID != 0))
+                        //{
+                        //    sav.SetPartyPokemon(ViewPokemon(sav.GetPartyPokemon(slot)), slot);
+                        //    UpdateParty();
+                        //}
                     }
                     if (pb.Name.Contains("Box"))
                     {
                         int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
                         slot--;
-                        PKMDS.Pokemon pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
-                        if ((pkm != null) && (pkm.SpeciesID != 0))
+                        //PKMDS.Pokemon pkm = currentbox[slot]; // sav.GetStoredPokemon(box, slot);
+                        if ((currentbox[slot] != null) && (currentbox[slot].SpeciesID != 0))
                         {
-                            sav.SetStoredPokemon(ViewPokemon(sav.GetStoredPokemon(sav.CurrentBox, slot)), sav.CurrentBox, slot);
+                            currentbox[slot].Data = ViewPokemon(currentbox[slot]).Data;
+                            //sav.SetStoredPokemon(ViewPokemon(sav.GetStoredPokemon(box, slot)), box, slot);
                         }
                         UpdateBox();
-                        UpdateBoxGrid(sav.CurrentBox);
-                        UpdateBoxCountLabel(sav.CurrentBox);
+                        UpdateBoxGrid(box);
+                        UpdateBoxCountLabel(box);
                     }
                 }
             }
@@ -963,34 +1032,34 @@ namespace PKMDS_Save_Editor
                     PictureBox pb = (PictureBox)(owner.SourceControl);
                     if (pb.Name.Contains("Party"))
                     {
-                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
-                        slot--;
-                        pkmFileOpen.FileName = "";
-                        if (pkmFileOpen.ShowDialog() != DialogResult.Cancel)
-                        {
-                            if (pkmFileOpen.FileName != "")
-                            {
-                                if (System.IO.File.Exists(pkmFileOpen.FileName))
-                                {
-                                    System.IO.FileInfo file = new System.IO.FileInfo(pkmFileOpen.FileName);
-                                    pkm = PKMDS.ReadPokemonFile(pkmFileOpen.FileName, file.Extension.ToLower() == "ek6");
-                                    if (pkm.SpeciesID != 0)
-                                    {
-                                        PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
-                                        ppkm.PokemonData = pkm;
-                                        if (sav.GetPartyPokemon(slot).PokemonData.SpeciesID == 0)
-                                        {
-                                            sav.WithdrawPokemon(ppkm.PokemonData);
-                                        }
-                                        else
-                                        {
-                                            sav.SetPartyPokemon(ppkm, slot);
-                                        }
-                                        UpdateParty();
-                                    }
-                                }
-                            }
-                        }
+                        //int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        //slot--;
+                        //pkmFileOpen.FileName = "";
+                        //if (pkmFileOpen.ShowDialog() != DialogResult.Cancel)
+                        //{
+                        //    if (pkmFileOpen.FileName != "")
+                        //    {
+                        //        if (System.IO.File.Exists(pkmFileOpen.FileName))
+                        //        {
+                        //            System.IO.FileInfo file = new System.IO.FileInfo(pkmFileOpen.FileName);
+                        //            pkm = PKMDS.ReadPokemonFile(pkmFileOpen.FileName, file.Extension.ToLower() == "ek6");
+                        //            if (pkm.SpeciesID != 0)
+                        //            {
+                        //                PKMDS.PartyPokemon ppkm = new PKMDS.PartyPokemon();
+                        //                ppkm.Pokemon/*Data*/ = pkm;
+                        //                if (sav.GetPartyPokemon(slot).Pokemon/*Data*/.SpeciesID == 0)
+                        //                {
+                        //                    sav.WithdrawPokemon(ppkm.Pokemon/*Data*/);
+                        //                }
+                        //                else
+                        //                {
+                        //                    sav.SetPartyPokemon(ppkm, slot);
+                        //                }
+                        //                UpdateParty();
+                        //            }
+                        //        }
+                        //    }
+                        //}
                     }
                     if (pb.Name.Contains("Box"))
                     {
@@ -1007,10 +1076,11 @@ namespace PKMDS_Save_Editor
                                     pkm = PKMDS.ReadPokemonFile(pkmFileOpen.FileName, file.Extension.ToLower() == "ek6");
                                     if (pkm.SpeciesID != 0)
                                     {
-                                        sav.SetStoredPokemon(pkm, sav.CurrentBox, slot);
+                                        //sav.SetStoredPokemon(pkm, box, slot);
+                                        currentbox[slot].Data = pkm.Data;
                                         UpdateBox();
-                                        UpdateBoxGrid(sav.CurrentBox);
-                                        UpdateBoxCountLabel(sav.CurrentBox);
+                                        UpdateBoxGrid(box);
+                                        UpdateBoxCountLabel(box);
                                     }
                                 }
                             }
@@ -1027,20 +1097,20 @@ namespace PKMDS_Save_Editor
                 ContextMenuStrip owner = menuItem.Owner as ContextMenuStrip;
                 if (owner != null)
                 {
-                    PKMDS.Pokemon pkm = new PKMDS.Pokemon();
+                    PKMDS.PokemonData pkm = new PKMDS.Pokemon();
                     int slot = 0;
                     PictureBox pb = (PictureBox)(owner.SourceControl);
                     if (pb.Name.Contains("Party"))
                     {
-                        int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
-                        slot--;
-                        pkm = sav.GetPartyPokemon(slot).PokemonData;
+                        //int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
+                        //slot--;
+                        //pkm = sav.GetPartyPokemon(slot).Pokemon/*Data*/;
                     }
                     if (pb.Name.Contains("Box"))
                     {
                         int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
                         slot--;
-                        pkm = sav.GetStoredPokemon(sav.CurrentBox, slot);
+                        pkm = currentbox[slot]; // sav.GetStoredPokemon(box, slot);
                     }
                     if (pkm.SpeciesID == 0)
                     {
@@ -1119,9 +1189,7 @@ namespace PKMDS_Save_Editor
         {
             return CreateCursor((Bitmap)(img), xHotSpot, yHotSpot);
         }
-
         private const int bytesPerPixel = 4;
-
         public static Bitmap ChangeImageOpacity(Bitmap originalImage, double opacity)
         {
             if ((originalImage.PixelFormat & System.Drawing.Imaging.PixelFormat.Indexed) == System.Drawing.Imaging.PixelFormat.Indexed)
@@ -1194,21 +1262,27 @@ namespace PKMDS_Save_Editor
             //UpdateBox();
             //UpdateParty();
         }
-
         private void reportToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            System.Collections.Generic.IList<PKMDS.Pokemon> currentbox = new List<PKMDS.Pokemon>();
-            int box = sav.CurrentBox;
-            for (int slot = 0; slot < 30; slot++)
-            {
-                currentbox.Add(sav.PCStorage.Box(box).Pokemon(slot));
-            }
+            //System.Collections.Generic.IList<PKMDS.Pokemon> currentbox = new List<PKMDS.Pokemon>();
+            //int box = sav.CurrentBox;
+            //PKMDS.PCStorage_Pub pcstorage = new PKMDS.PCStorage_Pub(sav.PCStorage);
+            //PKMDS.Box_Pub currentbox = pcstorage[box];
+
+            //for (int slot = 0; slot < 30; slot++)
+            //{
+            //    //currentbox.Add(sav.PCStorage.Box(0)[slot]);
+            //    currentbox.Add(sav.PCStorage.Box(boxint).Pokemon(slot));
+            //}
             System.Windows.Forms.Form frmDatagrid = new Form();
             frmDatagrid.Size = new System.Drawing.Size(1500, 1000);
             frmDatagrid.StartPosition = FormStartPosition.CenterScreen;
             frmDatagrid.Shown += frmDataShown;
             frmDatagrid.FormClosing += frmDataClosing;
             DataGridView dgData = new DataGridView();
+
+            //ListView dgData = new ListView();
+
             dgData.CellEndEdit += dgDataCellEndEdit;
             dgData.CellBeginEdit += dgDataCellBeginEdit;
             dgData.DataError += dgDataDataError;
@@ -1225,11 +1299,72 @@ namespace PKMDS_Save_Editor
             dgData.AlternatingRowsDefaultCellStyle = altstyle;
             dgData.Dock = DockStyle.Fill;
             //dgData.AutoGenerateColumns = false;
+
+            Type dgvType = dgData.GetType();
+            System.Reflection.PropertyInfo pi = dgvType.GetProperty("DoubleBuffered",
+                System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+            pi.SetValue(dgData, true, null);
+            //dgData.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+
             frmDatagrid.Controls.Add(dgData);
+            //DataGridViewCellStyle colstyle = dgData.ColumnHeadersDefaultCellStyle;
             dgData.DataSource = currentbox;
-            dgData.Columns["SpeciesName"].DisplayIndex = 0;
-            dgData.Columns["Icon"].DisplayIndex = 1;
-            dgData.Columns["Icon"].Frozen = true;
+            //dgData.DataBindings.Add("Columns", currentbox, "Objects", true, DataSourceUpdateMode.OnValidation);
+
+
+
+            //NameList nl = new NameList();
+            //nl.Add(new PersonName("Michael", "Bond"));
+            //dgData.DataSource = nl;
+
+
+
+
+            //dgData.Columns["SpeciesName"].DisplayIndex = 0;
+            //dgData.Columns["SpeciesName"].HeaderText = "Species";
+            //dgData.Columns["Icon"].DisplayIndex = 1;
+            //dgData.Columns["Nickname"].DisplayIndex = 2;
+            //dgData.Columns["Level"].DisplayIndex = 3;
+            //dgData.Columns["OTName"].DisplayIndex = 4;
+            //dgData.Columns["OTName"].HeaderText = "Trainer";
+            //dgData.Columns["TID"].DisplayIndex = 5;
+            //dgData.Columns["SID"].DisplayIndex = 6;
+            //dgData.Columns["SpeciesID"].HeaderText = "Pokédex #";
+
+            //dgData.Columns["ItemID"].HeaderText = "Item #";
+            //dgData.Columns["AbilityID"].HeaderText = "Ability #";
+            //dgData.Columns["LanguageID"].HeaderText = "Language #";
+            //dgData.Columns["MetAsEgg"].HeaderText = "Met As Egg";
+            //dgData.Columns["IsEgg"].HeaderText = "Is Egg";
+            //dgData.Columns["IsNicknamed"].HeaderText = "Nicknamed";
+            //dgData.Columns["IsFateful"].HeaderText = "Fateful";
+            //dgData.Columns["GenderID"].HeaderText = "Gender #";
+            //dgData.Columns["FormID"].HeaderText = "Form #";
+            //dgData.Columns["NatureID"].HeaderText = "Nature #";
+            //dgData.Columns["HasDWAbility"].HeaderText = "Hidden Ability";
+            //dgData.Columns["IsNsPokemon"].HeaderText = "N's Pokémon";
+            //dgData.Columns["NatureIncrease"].HeaderText = "Nature +";
+            //dgData.Columns["NatureDecrease"].HeaderText = "Nature -";
+            ////dgData.Columns["PokerusIcon"].HeaderText = "Pokérus";
+            ////dgData.Columns["BallPic"].HeaderText = "Ball";
+            ////dgData.Columns["ItemPic"].HeaderText = "Item";
+            ////dgData.Columns["GenderIcon"].HeaderText = "Gender";
+            ////dgData.Columns["ShinyIcon"].HeaderText = "Shiny";
+            //dgData.Columns["TNL"].HeaderText = "To Next Level";
+            //dgData.Columns["IsShiny"].HeaderText = "Shiny";
+            //dgData.Columns["EncounterID"].HeaderText = "Encounter #";
+            //dgData.Columns["OTGenderID"].HeaderText = "OT Gender #";
+            //dgData.Columns["MetLevel"].HeaderText = "Met Level";
+            //dgData.Columns["BallID"].HeaderText = "Ball #";
+            //dgData.Columns["PokerusDays"].HeaderText = "Pokérus Days";
+            //dgData.Columns["PokerusStrain"].HeaderText = "Pokérus Strain";
+            //dgData.Columns["MetLocationID"].HeaderText = "Met Location #";
+            //dgData.Columns["EggLocationID"].HeaderText = "Egg Location #";
+            //dgData.Columns["MetDate"].HeaderText = "Met Date";
+            //dgData.Columns["EggDate"].HeaderText = "Egg Date";
+            //dgData.Columns["HometownID"].HeaderText = "Hometown #";
+
+            //dgData.Columns["Icon"].Frozen = true;
 
             //string FieldName = "SpeciesID";
             //int colindex = dgData.Columns.Add(FieldName, "HeaderText");
@@ -1239,31 +1374,30 @@ namespace PKMDS_Save_Editor
             //colindex = dgData.Columns.Add(FieldName, "HeaderText");
             //dgData.Columns[colindex].DataPropertyName = FieldName;
 
-            for (int i = 29; i >= 0; i--)
-            {
-                dgData.Rows[i].Visible = false;
-            }
+            //for (int i = 29; i >= 0; i--)
+            //{
+            //    dgData.Rows[i].Visible = false;
+            //}
             frmDatagrid.ShowDialog();
+            UpdateBox();
+            UpdateBoxGrid(box);
         }
         private void frmDataShown(object sender, EventArgs e)
         {
             Form frmData = (Form)(sender);
             DataGridView dgData = (DataGridView)(frmData.Controls[0]);
-            for (int i = 29; i >= 0; i--)
+            for (int i = dgData.Rows.Count - 1; i >= 0; i--)
             {
-                if (i > dgData.Rows.Count)
+                if (dgData.Rows[i].Cells["SpeciesID"].Value.ToString() == "0")
                 {
-                    i = dgData.Rows.Count - 1;
+                    dgData.Rows[i].Visible = false;
                 }
-                if (i > 0)
+                else
                 {
-                    if (dgData.Rows[i].Cells["SpeciesID"].Value.ToString() == "0")
-                    {
-                        dgData.Rows[i].Visible = false;
-                    }
+                    dgData.Rows[i].Height = 32;
                 }
             }
-            dgData.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
+            //dgData.AutoResizeRows(DataGridViewAutoSizeRowsMode.AllCells);
         }
         private void frmDataClosing(object sender, EventArgs e)
         {
@@ -1273,6 +1407,8 @@ namespace PKMDS_Save_Editor
         private void dgDataCellEndEdit(object sender, DataGridViewCellEventArgs e)
         {
             DataGridView dgData = (DataGridView)(sender);
+            PKMDS.Pokemon pkm = (PKMDS.Pokemon)(dgData.Rows[e.RowIndex].DataBoundItem);
+            pkm.FixChecksum();
             try
             {
                 dgData.InvalidateRow(e.RowIndex);
@@ -1304,3 +1440,38 @@ namespace PKMDS_Save_Editor
         }
     }
 }
+//public class NameList : System.Collections.ObjectModel.ObservableCollection<PersonName>
+//{
+//    public NameList()
+//        : base()
+//    {
+//        Add(new PersonName("Willa", "Cather"));
+//        Add(new PersonName("Isak", "Dinesen"));
+//        Add(new PersonName("Victor", "Hugo"));
+//        Add(new PersonName("Jules", "Verne"));
+//    }
+//}
+
+//public class PersonName
+//{
+//    private string firstName;
+//    private string lastName;
+
+//    public PersonName(string first, string last)
+//    {
+//        this.firstName = first;
+//        this.lastName = last;
+//    }
+
+//    public string FirstName
+//    {
+//        get { return firstName; }
+//        set { firstName = value; }
+//    }
+
+//    public string LastName
+//    {
+//        get { return lastName; }
+//        set { lastName = value; }
+//    }
+//}

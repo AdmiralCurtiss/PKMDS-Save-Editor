@@ -23,7 +23,14 @@ namespace PKMDS_Save_Editor
             InitializeComponent();
             SetUI();
         }
-        public void SetPokemon(PKMDS.Pokemon pkm)
+        public void SetPokemon(PKMDS.Pokemon/*Data*/ pkm)
+        {
+            PokemonSet = false;
+            this.SharedPokemon = pkm.Clone();
+            this.TempPokemon = pkm.Clone();
+            //this.IsParty = false;
+        }
+        public void SetPokemon(PKMDS.PokemonData pkm)
         {
             PokemonSet = false;
             this.SharedPokemon = pkm.Clone();
@@ -33,9 +40,9 @@ namespace PKMDS_Save_Editor
         public void SetPokemon(PKMDS.PartyPokemon ppkm)
         {
             PokemonSet = false;
-            //SetPokemon(ppkm.PokemonData);
-            this.SharedPokemon = ppkm.PokemonData.Clone();
-            this.TempPokemon = ppkm.PokemonData.Clone();
+            //SetPokemon(ppkm.Pokemon/*Data*/);
+            //this.SharedPokemon = ppkm.PokemonData.Clone();
+            //this.TempPokemon = ppkm.PokemonData.Clone();
             //this.IsParty = true;
         }
         private void frmPKMViewer_Load(object sender, EventArgs e)

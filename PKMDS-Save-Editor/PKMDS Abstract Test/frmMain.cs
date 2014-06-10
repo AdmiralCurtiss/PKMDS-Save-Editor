@@ -14,7 +14,6 @@ namespace PKMDS_Abstract_Test
     {
         public frmMain()
         {
-            PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
             InitializeComponent();
         }
         PKMDS.Save sav;

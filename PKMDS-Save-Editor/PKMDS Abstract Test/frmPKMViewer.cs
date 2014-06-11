@@ -25,17 +25,17 @@ namespace PKMDS_Abstract_Test
             }
             controlsbinding.DataSource = temppkm;
             numSpecies.DataBindings.Add("Value", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", false, DataSourceUpdateMode.OnPropertyChanged, null);
-            pbBall.DataBindings.Add("Image", controlsbinding, "BallPic", false, DataSourceUpdateMode.OnPropertyChanged, null);
+            pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
+            pbBall.DataBindings.Add("Image", controlsbinding, "BallPic", true, DataSourceUpdateMode.Never, null);
             cbSpecies.DataBindings.Add("SelectedValue", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
             cbHeldItem.DataBindings.Add("SelectedValue", controlsbinding, "ItemID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            lblHeldItemFlavor.DataBindings.Add("Text", controlsbinding, "ItemFlavor", false, DataSourceUpdateMode.OnPropertyChanged, "");
-            pbHeldItem.DataBindings.Add("Image", controlsbinding, "ItemPic", true, DataSourceUpdateMode.OnPropertyChanged, null);
+            lblHeldItemFlavor.DataBindings.Add("Text", controlsbinding, "ItemFlavor", false, DataSourceUpdateMode.Never, "");
+            pbHeldItem.DataBindings.Add("Image", controlsbinding, "ItemPic", true, DataSourceUpdateMode.Never, null);
             numTID.DataBindings.Add("Value", controlsbinding, "TID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             numSID.DataBindings.Add("Value", controlsbinding, "SID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            pbGender.DataBindings.Add("Image", controlsbinding, "GenderIcon", true, DataSourceUpdateMode.OnPropertyChanged, null);
-            pbType1.DataBindings.Add("Image", controlsbinding, "TypePic1", true, DataSourceUpdateMode.OnPropertyChanged, null);
-            pbType2.DataBindings.Add("Image", controlsbinding, "TypePic2", true, DataSourceUpdateMode.OnPropertyChanged, null);
+            pbGender.DataBindings.Add("Image", controlsbinding, "GenderIcon", true, DataSourceUpdateMode.Never, null);
+            pbType1.DataBindings.Add("Image", controlsbinding, "TypePic1", true, DataSourceUpdateMode.Never, null);
+            pbType2.DataBindings.Add("Image", controlsbinding, "TypePic2", true, DataSourceUpdateMode.Never, null);
             // TODO: finish data bindings
         }
         private void SetUI()
@@ -281,6 +281,12 @@ namespace PKMDS_Abstract_Test
         public void SetPKM(PKMDS.Pokemon pokemon)
         {
             pkm = pokemon;
+            temppkm.Data = pkm.Data;
+            controlsbinding.ResetBindings(false);
+        }
+        public void SetPKM(PKMDS.PartyPokemon pokemon)
+        {
+            pkm = pokemon.PokemonData;
             temppkm.Data = pkm.Data;
             controlsbinding.ResetBindings(false);
         }

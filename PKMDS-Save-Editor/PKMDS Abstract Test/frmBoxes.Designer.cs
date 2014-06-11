@@ -368,14 +368,14 @@
             // loadSaveToolStripMenuItem
             // 
             this.loadSaveToolStripMenuItem.Name = "loadSaveToolStripMenuItem";
-            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.loadSaveToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.loadSaveToolStripMenuItem.Text = "Load .sav";
             // 
             // savesavToolStripMenuItem
             // 
             this.savesavToolStripMenuItem.Enabled = false;
             this.savesavToolStripMenuItem.Name = "savesavToolStripMenuItem";
-            this.savesavToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.savesavToolStripMenuItem.Size = new System.Drawing.Size(123, 22);
             this.savesavToolStripMenuItem.Text = "Save .sav";
             // 
             // SaveFileOpen
@@ -423,6 +423,12 @@
             this.pbPartySlot06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbPartySlot06.TabIndex = 5;
             this.pbPartySlot06.TabStop = false;
+            this.pbPartySlot06.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragDrop);
+            this.pbPartySlot06.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragEnter);
+            this.pbPartySlot06.DoubleClick += new System.EventHandler(this.pbPartySlot_DoubleClick);
+            this.pbPartySlot06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartySlot_MouseDown);
+            this.pbPartySlot06.MouseEnter += new System.EventHandler(this.pbPartySlot_MouseEnter);
+            this.pbPartySlot06.MouseLeave += new System.EventHandler(this.pbPartySlot_MouseLeave);
             // 
             // BoxPartySlotContext
             // 
@@ -463,6 +469,12 @@
             this.pbPartySlot05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbPartySlot05.TabIndex = 4;
             this.pbPartySlot05.TabStop = false;
+            this.pbPartySlot05.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragDrop);
+            this.pbPartySlot05.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragEnter);
+            this.pbPartySlot05.DoubleClick += new System.EventHandler(this.pbPartySlot_DoubleClick);
+            this.pbPartySlot05.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartySlot_MouseDown);
+            this.pbPartySlot05.MouseEnter += new System.EventHandler(this.pbPartySlot_MouseEnter);
+            this.pbPartySlot05.MouseLeave += new System.EventHandler(this.pbPartySlot_MouseLeave);
             // 
             // pbPartySlot04
             // 
@@ -475,6 +487,12 @@
             this.pbPartySlot04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbPartySlot04.TabIndex = 3;
             this.pbPartySlot04.TabStop = false;
+            this.pbPartySlot04.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragDrop);
+            this.pbPartySlot04.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragEnter);
+            this.pbPartySlot04.DoubleClick += new System.EventHandler(this.pbPartySlot_DoubleClick);
+            this.pbPartySlot04.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartySlot_MouseDown);
+            this.pbPartySlot04.MouseEnter += new System.EventHandler(this.pbPartySlot_MouseEnter);
+            this.pbPartySlot04.MouseLeave += new System.EventHandler(this.pbPartySlot_MouseLeave);
             // 
             // pbPartySlot03
             // 
@@ -487,6 +505,12 @@
             this.pbPartySlot03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbPartySlot03.TabIndex = 2;
             this.pbPartySlot03.TabStop = false;
+            this.pbPartySlot03.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragDrop);
+            this.pbPartySlot03.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragEnter);
+            this.pbPartySlot03.DoubleClick += new System.EventHandler(this.pbPartySlot_DoubleClick);
+            this.pbPartySlot03.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartySlot_MouseDown);
+            this.pbPartySlot03.MouseEnter += new System.EventHandler(this.pbPartySlot_MouseEnter);
+            this.pbPartySlot03.MouseLeave += new System.EventHandler(this.pbPartySlot_MouseLeave);
             // 
             // pbPartySlot02
             // 
@@ -499,6 +523,12 @@
             this.pbPartySlot02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbPartySlot02.TabIndex = 1;
             this.pbPartySlot02.TabStop = false;
+            this.pbPartySlot02.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragDrop);
+            this.pbPartySlot02.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragEnter);
+            this.pbPartySlot02.DoubleClick += new System.EventHandler(this.pbPartySlot_DoubleClick);
+            this.pbPartySlot02.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartySlot_MouseDown);
+            this.pbPartySlot02.MouseEnter += new System.EventHandler(this.pbPartySlot_MouseEnter);
+            this.pbPartySlot02.MouseLeave += new System.EventHandler(this.pbPartySlot_MouseLeave);
             // 
             // pbPartySlot01
             // 
@@ -511,6 +541,12 @@
             this.pbPartySlot01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbPartySlot01.TabIndex = 0;
             this.pbPartySlot01.TabStop = false;
+            this.pbPartySlot01.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragDrop);
+            this.pbPartySlot01.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbPartySlot_DragEnter);
+            this.pbPartySlot01.DoubleClick += new System.EventHandler(this.pbPartySlot_DoubleClick);
+            this.pbPartySlot01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbPartySlot_MouseDown);
+            this.pbPartySlot01.MouseEnter += new System.EventHandler(this.pbPartySlot_MouseEnter);
+            this.pbPartySlot01.MouseLeave += new System.EventHandler(this.pbPartySlot_MouseLeave);
             // 
             // pnlParty
             // 
@@ -598,6 +634,12 @@
             this.pbBoxSlot30.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot30.TabIndex = 5;
             this.pbBoxSlot30.TabStop = false;
+            this.pbBoxSlot30.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot30.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot30.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot30.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot30.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot30.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot29
             // 
@@ -610,6 +652,12 @@
             this.pbBoxSlot29.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot29.TabIndex = 5;
             this.pbBoxSlot29.TabStop = false;
+            this.pbBoxSlot29.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot29.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot29.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot29.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot29.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot29.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot28
             // 
@@ -622,6 +670,12 @@
             this.pbBoxSlot28.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot28.TabIndex = 5;
             this.pbBoxSlot28.TabStop = false;
+            this.pbBoxSlot28.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot28.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot28.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot28.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot28.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot28.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot27
             // 
@@ -634,6 +688,12 @@
             this.pbBoxSlot27.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot27.TabIndex = 5;
             this.pbBoxSlot27.TabStop = false;
+            this.pbBoxSlot27.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot27.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot27.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot27.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot27.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot27.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot26
             // 
@@ -646,6 +706,12 @@
             this.pbBoxSlot26.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot26.TabIndex = 5;
             this.pbBoxSlot26.TabStop = false;
+            this.pbBoxSlot26.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot26.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot26.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot26.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot26.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot26.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot25
             // 
@@ -658,6 +724,12 @@
             this.pbBoxSlot25.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot25.TabIndex = 5;
             this.pbBoxSlot25.TabStop = false;
+            this.pbBoxSlot25.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot25.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot25.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot25.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot25.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot25.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot24
             // 
@@ -670,6 +742,12 @@
             this.pbBoxSlot24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot24.TabIndex = 5;
             this.pbBoxSlot24.TabStop = false;
+            this.pbBoxSlot24.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot24.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot24.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot24.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot24.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot23
             // 
@@ -682,6 +760,12 @@
             this.pbBoxSlot23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot23.TabIndex = 5;
             this.pbBoxSlot23.TabStop = false;
+            this.pbBoxSlot23.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot23.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot23.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot23.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot23.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot22
             // 
@@ -694,6 +778,12 @@
             this.pbBoxSlot22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot22.TabIndex = 5;
             this.pbBoxSlot22.TabStop = false;
+            this.pbBoxSlot22.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot22.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot22.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot22.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot22.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot21
             // 
@@ -706,6 +796,12 @@
             this.pbBoxSlot21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot21.TabIndex = 5;
             this.pbBoxSlot21.TabStop = false;
+            this.pbBoxSlot21.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot21.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot21.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot21.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot21.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot21.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot20
             // 
@@ -718,6 +814,12 @@
             this.pbBoxSlot20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot20.TabIndex = 5;
             this.pbBoxSlot20.TabStop = false;
+            this.pbBoxSlot20.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot20.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot20.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot20.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot20.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot19
             // 
@@ -730,6 +832,12 @@
             this.pbBoxSlot19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot19.TabIndex = 5;
             this.pbBoxSlot19.TabStop = false;
+            this.pbBoxSlot19.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot19.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot19.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot19.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot19.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot19.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot18
             // 
@@ -742,6 +850,12 @@
             this.pbBoxSlot18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot18.TabIndex = 5;
             this.pbBoxSlot18.TabStop = false;
+            this.pbBoxSlot18.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot18.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot18.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot18.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot18.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot17
             // 
@@ -754,6 +868,12 @@
             this.pbBoxSlot17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot17.TabIndex = 5;
             this.pbBoxSlot17.TabStop = false;
+            this.pbBoxSlot17.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot17.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot17.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot17.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot17.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot17.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot16
             // 
@@ -766,6 +886,12 @@
             this.pbBoxSlot16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot16.TabIndex = 5;
             this.pbBoxSlot16.TabStop = false;
+            this.pbBoxSlot16.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot16.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot16.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot16.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot16.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot15
             // 
@@ -778,6 +904,12 @@
             this.pbBoxSlot15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot15.TabIndex = 5;
             this.pbBoxSlot15.TabStop = false;
+            this.pbBoxSlot15.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot15.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot15.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot15.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot15.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot14
             // 
@@ -790,6 +922,12 @@
             this.pbBoxSlot14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot14.TabIndex = 5;
             this.pbBoxSlot14.TabStop = false;
+            this.pbBoxSlot14.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot14.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot14.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot14.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot14.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot13
             // 
@@ -802,6 +940,12 @@
             this.pbBoxSlot13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot13.TabIndex = 5;
             this.pbBoxSlot13.TabStop = false;
+            this.pbBoxSlot13.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot13.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot13.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot13.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot13.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot12
             // 
@@ -814,6 +958,12 @@
             this.pbBoxSlot12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot12.TabIndex = 5;
             this.pbBoxSlot12.TabStop = false;
+            this.pbBoxSlot12.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot12.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot12.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot12.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot12.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot11
             // 
@@ -826,6 +976,12 @@
             this.pbBoxSlot11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot11.TabIndex = 5;
             this.pbBoxSlot11.TabStop = false;
+            this.pbBoxSlot11.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot11.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot11.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot11.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot11.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot10
             // 
@@ -838,6 +994,12 @@
             this.pbBoxSlot10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot10.TabIndex = 13;
             this.pbBoxSlot10.TabStop = false;
+            this.pbBoxSlot10.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot10.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot10.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot10.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot10.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot01
             // 
@@ -850,7 +1012,12 @@
             this.pbBoxSlot01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot01.TabIndex = 4;
             this.pbBoxSlot01.TabStop = false;
-            this.pbBoxSlot01.Click += new System.EventHandler(this.pbBoxSlot01_Click);
+            this.pbBoxSlot01.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot01.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot01.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot01.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot01.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot09
             // 
@@ -863,6 +1030,12 @@
             this.pbBoxSlot09.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot09.TabIndex = 8;
             this.pbBoxSlot09.TabStop = false;
+            this.pbBoxSlot09.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot09.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot09.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot09.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot09.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot09.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot08
             // 
@@ -875,6 +1048,12 @@
             this.pbBoxSlot08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot08.TabIndex = 12;
             this.pbBoxSlot08.TabStop = false;
+            this.pbBoxSlot08.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot08.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot08.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot08.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot08.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot08.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot02
             // 
@@ -887,6 +1066,12 @@
             this.pbBoxSlot02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot02.TabIndex = 9;
             this.pbBoxSlot02.TabStop = false;
+            this.pbBoxSlot02.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot02.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot02.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot02.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot02.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot02.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot06
             // 
@@ -899,6 +1084,12 @@
             this.pbBoxSlot06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot06.TabIndex = 11;
             this.pbBoxSlot06.TabStop = false;
+            this.pbBoxSlot06.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot06.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot06.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot06.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot06.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot07
             // 
@@ -911,6 +1102,12 @@
             this.pbBoxSlot07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot07.TabIndex = 7;
             this.pbBoxSlot07.TabStop = false;
+            this.pbBoxSlot07.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot07.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot07.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot07.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot07.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot07.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot03
             // 
@@ -923,6 +1120,12 @@
             this.pbBoxSlot03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot03.TabIndex = 5;
             this.pbBoxSlot03.TabStop = false;
+            this.pbBoxSlot03.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot03.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot03.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot03.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot03.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot03.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot04
             // 
@@ -935,6 +1138,12 @@
             this.pbBoxSlot04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot04.TabIndex = 10;
             this.pbBoxSlot04.TabStop = false;
+            this.pbBoxSlot04.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot04.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot04.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot04.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot04.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot04.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // pbBoxSlot05
             // 
@@ -947,6 +1156,12 @@
             this.pbBoxSlot05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxSlot05.TabIndex = 6;
             this.pbBoxSlot05.TabStop = false;
+            this.pbBoxSlot05.DragDrop += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragDrop);
+            this.pbBoxSlot05.DragEnter += new System.Windows.Forms.DragEventHandler(this.pbBoxSlot_DragEnter);
+            this.pbBoxSlot05.DoubleClick += new System.EventHandler(this.pbBoxSlot_DoubleClick);
+            this.pbBoxSlot05.MouseDown += new System.Windows.Forms.MouseEventHandler(this.pbBoxSlot_MouseDown);
+            this.pbBoxSlot05.MouseEnter += new System.EventHandler(this.pbBoxSlot_MouseEnter);
+            this.pbBoxSlot05.MouseLeave += new System.EventHandler(this.pbBoxSlot_MouseLeave);
             // 
             // txtBoxName
             // 
@@ -958,6 +1173,7 @@
             this.txtBoxName.Size = new System.Drawing.Size(128, 20);
             this.txtBoxName.TabIndex = 1;
             this.txtBoxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtBoxName.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtBoxName_KeyDown);
             // 
             // btnNextBox
             // 
@@ -970,6 +1186,7 @@
             this.btnNextBox.TabIndex = 2;
             this.btnNextBox.Text = "-->";
             this.btnNextBox.UseVisualStyleBackColor = true;
+            this.btnNextBox.Click += new System.EventHandler(this.btnNextBox_Click);
             // 
             // btnPreviousBox
             // 
@@ -982,6 +1199,7 @@
             this.btnPreviousBox.TabIndex = 0;
             this.btnPreviousBox.Text = "<--";
             this.btnPreviousBox.UseVisualStyleBackColor = true;
+            this.btnPreviousBox.Click += new System.EventHandler(this.btnPreviousBox_Click);
             // 
             // splitMain
             // 
@@ -1031,6 +1249,7 @@
             this.splitMain.Panel2.Controls.Add(this.lblBoxCount01);
             this.splitMain.Panel2.Controls.Add(this.tlBoxGrids);
             this.splitMain.Panel2.Enabled = false;
+            this.splitMain.Panel2.MouseEnter += new System.EventHandler(this.splitMain_Panel2_MouseEnter);
             this.splitMain.Size = new System.Drawing.Size(363, 218);
             this.splitMain.SplitterDistance = 192;
             this.splitMain.SplitterWidth = 1;
@@ -1321,6 +1540,12 @@
             this.lblBoxGrid24.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid24.TabIndex = 0;
             this.lblBoxGrid24.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid24.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid24.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid24.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid24.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid24.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid24
             // 
@@ -1331,6 +1556,12 @@
             this.pbBoxGrid24.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid24.TabIndex = 9;
             this.pbBoxGrid24.TabStop = false;
+            this.pbBoxGrid24.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid24.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid24.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid24.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid24.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid24.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid23
             // 
@@ -1367,6 +1598,12 @@
             this.lblBoxGrid23.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid23.TabIndex = 0;
             this.lblBoxGrid23.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid23.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid23.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid23.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid23.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid23.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid23
             // 
@@ -1377,6 +1614,12 @@
             this.pbBoxGrid23.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid23.TabIndex = 10;
             this.pbBoxGrid23.TabStop = false;
+            this.pbBoxGrid23.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid23.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid23.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid23.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid23.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid23.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid22
             // 
@@ -1413,6 +1656,12 @@
             this.lblBoxGrid22.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid22.TabIndex = 0;
             this.lblBoxGrid22.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid22.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid22.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid22.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid22.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid22.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid22
             // 
@@ -1423,6 +1672,12 @@
             this.pbBoxGrid22.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid22.TabIndex = 11;
             this.pbBoxGrid22.TabStop = false;
+            this.pbBoxGrid22.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid22.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid22.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid22.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid22.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid22.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid21
             // 
@@ -1459,6 +1714,12 @@
             this.lblBoxGrid21.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid21.TabIndex = 0;
             this.lblBoxGrid21.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid21.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid21.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid21.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid21.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid21.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid21.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid21
             // 
@@ -1469,6 +1730,12 @@
             this.pbBoxGrid21.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid21.TabIndex = 12;
             this.pbBoxGrid21.TabStop = false;
+            this.pbBoxGrid21.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid21.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid21.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid21.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid21.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid21.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid20
             // 
@@ -1505,6 +1772,12 @@
             this.lblBoxGrid20.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid20.TabIndex = 0;
             this.lblBoxGrid20.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid20.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid20.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid20.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid20.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid20.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid20
             // 
@@ -1515,6 +1788,12 @@
             this.pbBoxGrid20.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid20.TabIndex = 13;
             this.pbBoxGrid20.TabStop = false;
+            this.pbBoxGrid20.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid20.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid20.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid20.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid20.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid20.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid19
             // 
@@ -1551,6 +1830,12 @@
             this.lblBoxGrid19.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid19.TabIndex = 0;
             this.lblBoxGrid19.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid19.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid19.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid19.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid19.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid19.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid19.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid19
             // 
@@ -1561,6 +1846,12 @@
             this.pbBoxGrid19.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid19.TabIndex = 14;
             this.pbBoxGrid19.TabStop = false;
+            this.pbBoxGrid19.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid19.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid19.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid19.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid19.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid19.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid18
             // 
@@ -1597,6 +1888,12 @@
             this.lblBoxGrid18.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid18.TabIndex = 0;
             this.lblBoxGrid18.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid18.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid18.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid18.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid18.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid18.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid18
             // 
@@ -1607,6 +1904,12 @@
             this.pbBoxGrid18.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid18.TabIndex = 15;
             this.pbBoxGrid18.TabStop = false;
+            this.pbBoxGrid18.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid18.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid18.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid18.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid18.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid18.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid17
             // 
@@ -1643,6 +1946,12 @@
             this.lblBoxGrid17.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid17.TabIndex = 0;
             this.lblBoxGrid17.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid17.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid17.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid17.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid17.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid17.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid17.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid17
             // 
@@ -1653,6 +1962,12 @@
             this.pbBoxGrid17.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid17.TabIndex = 16;
             this.pbBoxGrid17.TabStop = false;
+            this.pbBoxGrid17.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid17.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid17.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid17.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid17.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid17.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid16
             // 
@@ -1689,6 +2004,12 @@
             this.lblBoxGrid16.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid16.TabIndex = 0;
             this.lblBoxGrid16.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid16.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid16.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid16.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid16.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid16.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid16
             // 
@@ -1699,6 +2020,12 @@
             this.pbBoxGrid16.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid16.TabIndex = 17;
             this.pbBoxGrid16.TabStop = false;
+            this.pbBoxGrid16.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid16.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid16.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid16.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid16.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid16.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid15
             // 
@@ -1735,6 +2062,12 @@
             this.lblBoxGrid15.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid15.TabIndex = 0;
             this.lblBoxGrid15.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid15.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid15.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid15.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid15.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid15.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid15
             // 
@@ -1745,6 +2078,12 @@
             this.pbBoxGrid15.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid15.TabIndex = 18;
             this.pbBoxGrid15.TabStop = false;
+            this.pbBoxGrid15.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid15.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid15.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid15.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid15.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid15.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid14
             // 
@@ -1781,6 +2120,12 @@
             this.lblBoxGrid14.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid14.TabIndex = 0;
             this.lblBoxGrid14.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid14.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid14.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid14.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid14.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid14.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid14
             // 
@@ -1791,6 +2136,12 @@
             this.pbBoxGrid14.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid14.TabIndex = 19;
             this.pbBoxGrid14.TabStop = false;
+            this.pbBoxGrid14.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid14.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid14.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid14.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid14.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid14.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid13
             // 
@@ -1827,6 +2178,12 @@
             this.lblBoxGrid13.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid13.TabIndex = 0;
             this.lblBoxGrid13.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid13.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid13.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid13.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid13.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid13.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid13
             // 
@@ -1837,6 +2194,12 @@
             this.pbBoxGrid13.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid13.TabIndex = 20;
             this.pbBoxGrid13.TabStop = false;
+            this.pbBoxGrid13.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid13.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid13.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid13.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid13.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid13.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid12
             // 
@@ -1873,6 +2236,12 @@
             this.lblBoxGrid12.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid12.TabIndex = 0;
             this.lblBoxGrid12.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid12.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid12.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid12.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid12.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid12.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid12
             // 
@@ -1883,6 +2252,12 @@
             this.pbBoxGrid12.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid12.TabIndex = 21;
             this.pbBoxGrid12.TabStop = false;
+            this.pbBoxGrid12.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid12.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid12.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid12.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid12.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid12.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid11
             // 
@@ -1919,6 +2294,12 @@
             this.lblBoxGrid11.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid11.TabIndex = 0;
             this.lblBoxGrid11.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid11.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid11.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid11.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid11.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid11.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid11
             // 
@@ -1929,6 +2310,12 @@
             this.pbBoxGrid11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid11.TabIndex = 22;
             this.pbBoxGrid11.TabStop = false;
+            this.pbBoxGrid11.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid11.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid11.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid11.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid11.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid11.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid10
             // 
@@ -1965,6 +2352,12 @@
             this.lblBoxGrid10.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid10.TabIndex = 0;
             this.lblBoxGrid10.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid10.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid10.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid10.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid10.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid10.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid10
             // 
@@ -1975,6 +2368,12 @@
             this.pbBoxGrid10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid10.TabIndex = 23;
             this.pbBoxGrid10.TabStop = false;
+            this.pbBoxGrid10.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid10.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid10.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid10.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid10.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid10.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid09
             // 
@@ -2011,6 +2410,12 @@
             this.lblBoxGrid09.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid09.TabIndex = 0;
             this.lblBoxGrid09.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid09.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid09.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid09.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid09.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid09.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid09.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid09
             // 
@@ -2021,6 +2426,12 @@
             this.pbBoxGrid09.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid09.TabIndex = 24;
             this.pbBoxGrid09.TabStop = false;
+            this.pbBoxGrid09.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid09.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid09.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid09.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid09.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid09.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid08
             // 
@@ -2057,6 +2468,12 @@
             this.lblBoxGrid08.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid08.TabIndex = 0;
             this.lblBoxGrid08.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid08.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid08.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid08.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid08.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid08.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid08.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid08
             // 
@@ -2067,6 +2484,12 @@
             this.pbBoxGrid08.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid08.TabIndex = 25;
             this.pbBoxGrid08.TabStop = false;
+            this.pbBoxGrid08.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid08.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid08.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid08.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid08.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid08.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid07
             // 
@@ -2103,6 +2526,12 @@
             this.lblBoxGrid07.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid07.TabIndex = 0;
             this.lblBoxGrid07.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid07.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid07.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid07.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid07.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid07.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid07.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid07
             // 
@@ -2113,6 +2542,12 @@
             this.pbBoxGrid07.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid07.TabIndex = 7;
             this.pbBoxGrid07.TabStop = false;
+            this.pbBoxGrid07.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid07.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid07.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid07.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid07.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid07.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid06
             // 
@@ -2149,6 +2584,12 @@
             this.lblBoxGrid06.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid06.TabIndex = 0;
             this.lblBoxGrid06.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid06.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid06.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid06.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid06.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid06.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid06
             // 
@@ -2159,6 +2600,12 @@
             this.pbBoxGrid06.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid06.TabIndex = 6;
             this.pbBoxGrid06.TabStop = false;
+            this.pbBoxGrid06.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid06.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid06.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid06.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid06.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid06.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid05
             // 
@@ -2195,6 +2642,12 @@
             this.lblBoxGrid05.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid05.TabIndex = 0;
             this.lblBoxGrid05.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid05.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid05.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid05.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid05.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid05.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid05.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid05
             // 
@@ -2205,6 +2658,12 @@
             this.pbBoxGrid05.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid05.TabIndex = 5;
             this.pbBoxGrid05.TabStop = false;
+            this.pbBoxGrid05.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid05.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid05.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid05.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid05.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid05.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid04
             // 
@@ -2241,6 +2700,12 @@
             this.lblBoxGrid04.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid04.TabIndex = 0;
             this.lblBoxGrid04.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid04.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid04.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid04.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid04.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid04.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid04.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid04
             // 
@@ -2251,6 +2716,12 @@
             this.pbBoxGrid04.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid04.TabIndex = 4;
             this.pbBoxGrid04.TabStop = false;
+            this.pbBoxGrid04.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid04.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid04.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid04.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid04.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid04.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid03
             // 
@@ -2287,6 +2758,12 @@
             this.lblBoxGrid03.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid03.TabIndex = 0;
             this.lblBoxGrid03.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid03.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid03.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid03.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid03.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid03.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid03.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid03
             // 
@@ -2297,6 +2774,12 @@
             this.pbBoxGrid03.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid03.TabIndex = 3;
             this.pbBoxGrid03.TabStop = false;
+            this.pbBoxGrid03.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid03.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid03.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid03.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid03.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid03.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid02
             // 
@@ -2333,6 +2816,12 @@
             this.lblBoxGrid02.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid02.TabIndex = 0;
             this.lblBoxGrid02.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid02.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid02.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid02.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid02.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid02.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid02.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid02
             // 
@@ -2343,6 +2832,12 @@
             this.pbBoxGrid02.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid02.TabIndex = 2;
             this.pbBoxGrid02.TabStop = false;
+            this.pbBoxGrid02.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid02.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid02.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid02.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid02.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid02.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pnlBoxGrid01
             // 
@@ -2379,6 +2874,12 @@
             this.lblBoxGrid01.Size = new System.Drawing.Size(60, 20);
             this.lblBoxGrid01.TabIndex = 0;
             this.lblBoxGrid01.TextAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.lblBoxGrid01.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.lblBoxGrid01.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.lblBoxGrid01.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.lblBoxGrid01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.lblBoxGrid01.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.lblBoxGrid01.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // pbBoxGrid01
             // 
@@ -2390,6 +2891,12 @@
             this.pbBoxGrid01.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pbBoxGrid01.TabIndex = 1;
             this.pbBoxGrid01.TabStop = false;
+            this.pbBoxGrid01.Click += new System.EventHandler(this.lblBoxNamepbBoxGrid_Click);
+            this.pbBoxGrid01.DragDrop += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragDrop);
+            this.pbBoxGrid01.DragEnter += new System.Windows.Forms.DragEventHandler(this.lblBoxNamepbBoxGrid_DragEnter);
+            this.pbBoxGrid01.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lblBoxNamepbBoxGrid_MouseDown);
+            this.pbBoxGrid01.MouseEnter += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseEnter);
+            this.pbBoxGrid01.MouseLeave += new System.EventHandler(this.lblBoxNamepbBoxGrid_MouseLeave);
             // 
             // lblPartySize
             // 
@@ -2563,6 +3070,7 @@
             this.Name = "frmBoxes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PKMDS Save Editor";
+            this.Shown += new System.EventHandler(this.frmBoxes_Shown);
             this.mainMenu.ResumeLayout(false);
             this.mainMenu.PerformLayout();
             this.tlParty.ResumeLayout(false);

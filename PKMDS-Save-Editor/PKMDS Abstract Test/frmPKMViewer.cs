@@ -14,6 +14,7 @@ namespace PKMDS_Abstract_Test
         private PKMDS.Pokemon pkm;
         private PKMDS.Pokemon temppkm = new PKMDS.Pokemon();
         BindingSource controlsbinding = new BindingSource();
+        BindingSource formsbindingsource = new BindingSource();
         Binding nicknamedbinding;
         Binding diamondbinding;
         Binding squarebinding;
@@ -21,6 +22,7 @@ namespace PKMDS_Abstract_Test
         Binding circlebinding;
         Binding heartbinding;
         Binding starbinding;
+        Binding formbinding;
         bool uiset = false;
         public frmPKMViewer()
         {
@@ -31,6 +33,7 @@ namespace PKMDS_Abstract_Test
                 SetUI();
             }
             controlsbinding.DataSource = temppkm;
+            formsbindingsource.DataSource = temppkm;
             numSpecies.DataBindings.Add("Value", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
             pbBall.DataBindings.Add("Image", controlsbinding, "BallPic", true, DataSourceUpdateMode.Never, null);
@@ -61,9 +64,10 @@ namespace PKMDS_Abstract_Test
             trianglebinding.Format += new ConvertEventHandler(SetMarkingImage);
             circlebinding.Format += new ConvertEventHandler(SetMarkingImage);
             heartbinding.Format += new ConvertEventHandler(SetMarkingImage);
+            formbinding = cbForm.DataBindings.Add("SelectedIndex", formsbindingsource, "FormID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            formbinding.Format += new ConvertEventHandler(FormConvert);
 
             /*
-cbForm.DataBindings.Add();
 numLevel.DataBindings.Add();
 txtNickname.DataBindings.Add();
 gbOTInfo.DataBindings.Add();
@@ -205,6 +209,38 @@ lblForm.DataBindings.Add();
              */
             // TODO: finish data bindings
         }
+        private void FormConvert(object bindingsource, ConvertEventArgs e)
+        {
+            UInt16 speciesid = temppkm.SpeciesID;
+            if ((cbForm.Items.Count == 0) || !(
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Unown)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Castform)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Deoxys)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Burmy)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Wormadam)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Cherrim)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Shellos)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Gastrodon)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Rotom)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Giratina)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Shaymin)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Basculin)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Darmanitan)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Deerling)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Sawsbuck)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Tornadus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Thundurus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Landorus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Kyurem)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Keldeo)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Meloetta)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Arceus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Genesect))
+                ))
+            {
+                e.Value = -1;
+            }
+        }
         private void SetNicknamedFlag(object bindingsource, ConvertEventArgs e)
         {
             Binding bs = (Binding)(bindingsource);
@@ -253,7 +289,33 @@ lblForm.DataBindings.Add();
         private void SetForms()
         {
             cbForm.Items.Clear();
-            if (temppkm.SpeciesID != 0)
+            cbForm.Text = "";
+            UInt16 speciesid = temppkm.SpeciesID;
+            if ((speciesid != 0) && (
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Unown)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Castform)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Deoxys)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Burmy)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Wormadam)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Cherrim)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Shellos)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Gastrodon)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Rotom)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Giratina)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Shaymin)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Basculin)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Darmanitan)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Deerling)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Sawsbuck)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Tornadus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Thundurus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Landorus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Kyurem)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Keldeo)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Meloetta)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Arceus)) ||
+                (speciesid == (UInt16)(PKMDS.PKMSpecies.Genesect))
+                ))
             {
                 string[] formnames = PKMDS.GetPKMFormNames(temppkm.SpeciesID);
                 if (formnames.Length != 0)
@@ -262,6 +324,7 @@ lblForm.DataBindings.Add();
                     {
                         cbForm.Items.AddRange(PKMDS.GetPKMFormNames(temppkm.SpeciesID));
                         cbForm.Enabled = true;
+                        formsbindingsource.ResetBindings(false);
                     }
                     else
                     {
@@ -272,6 +335,10 @@ lblForm.DataBindings.Add();
                 {
                     cbForm.Enabled = false;
                 }
+            }
+            else
+            {
+                cbForm.Enabled = false;
             }
         }
         private void SetItems()
@@ -481,12 +548,14 @@ lblForm.DataBindings.Add();
         {
             pkm = pokemon;
             temppkm.Data = pkm.Data;
+            SetForms();
             controlsbinding.ResetBindings(false);
         }
         public void SetPKM(PKMDS.PartyPokemon pokemon)
         {
             pkm = pokemon.PokemonData;
             temppkm.Data = pkm.Data;
+            SetForms();
             controlsbinding.ResetBindings(false);
         }
         private void SavePKM()
@@ -546,6 +615,10 @@ lblForm.DataBindings.Add();
                 temppkm.Circle = !(temppkm.Circle);
                 circlebinding.ReadValue();
             }
+        }
+        private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            SetForms();
         }
     }
 }

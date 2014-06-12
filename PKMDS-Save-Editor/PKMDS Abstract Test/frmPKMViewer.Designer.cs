@@ -533,6 +533,7 @@
             this.cbSpecies.Name = "cbSpecies";
             this.cbSpecies.Size = new System.Drawing.Size(114, 21);
             this.cbSpecies.TabIndex = 1;
+            this.cbSpecies.SelectedIndexChanged += new System.EventHandler(this.cbSpecies_SelectedIndexChanged);
             // 
             // lblHeldItem
             // 

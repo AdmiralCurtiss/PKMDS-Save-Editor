@@ -240,6 +240,11 @@ lblForm.DataBindings.Add();
             {
                 e.Value = -1;
             }
+            if (Convert.ToInt32(e.Value) > cbForm.Items.Count)
+            {
+                temppkm.FormID = Convert.ToByte(cbForm.Items.Count - 1);
+                controlsbinding.ResetBindings(false);
+            }
         }
         private void SetNicknamedFlag(object bindingsource, ConvertEventArgs e)
         {

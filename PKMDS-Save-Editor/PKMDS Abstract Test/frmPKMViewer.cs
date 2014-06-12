@@ -14,6 +14,13 @@ namespace PKMDS_Abstract_Test
         private PKMDS.Pokemon pkm;
         private PKMDS.Pokemon temppkm = new PKMDS.Pokemon();
         BindingSource controlsbinding = new BindingSource();
+        Binding nicknamedbinding;
+        Binding diamondbinding;
+        Binding squarebinding;
+        Binding trianglebinding;
+        Binding circlebinding;
+        Binding heartbinding;
+        Binding starbinding;
         bool uiset = false;
         public frmPKMViewer()
         {
@@ -36,7 +43,199 @@ namespace PKMDS_Abstract_Test
             pbGender.DataBindings.Add("Image", controlsbinding, "GenderIcon", true, DataSourceUpdateMode.Never, null);
             pbType1.DataBindings.Add("Image", controlsbinding, "TypePic1", true, DataSourceUpdateMode.Never, null);
             pbType2.DataBindings.Add("Image", controlsbinding, "TypePic2", true, DataSourceUpdateMode.Never, null);
+            cbBall.DataBindings.Add("SelectedValue", controlsbinding, "BallID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            pbShiny.DataBindings.Add("Image", controlsbinding, "ShinyIcon", true, DataSourceUpdateMode.Never, null);
+            pbPokerus.DataBindings.Add("Image", controlsbinding, "PokerusIcon", true, DataSourceUpdateMode.Never, null);
+            chkNicknamed.DataBindings.Add("Checked", controlsbinding, "IsNicknamed", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            nicknamedbinding = txtNickname.DataBindings.Add("Text", controlsbinding, "Nickname", true, DataSourceUpdateMode.OnValidation, "");
+            nicknamedbinding.Parse += new ConvertEventHandler(SetNicknamedFlag);
+            diamondbinding = pbDiamond.DataBindings.Add("Image", controlsbinding, "Diamond", true, DataSourceUpdateMode.Never, PKMDS.GetMarkingImage(PKMDS.Markings.Diamond, false));
+            squarebinding = pbSquare.DataBindings.Add("Image", controlsbinding, "Square", true, DataSourceUpdateMode.Never, PKMDS.GetMarkingImage(PKMDS.Markings.Square, false));
+            starbinding = pbStar.DataBindings.Add("Image", controlsbinding, "Star", true, DataSourceUpdateMode.Never, PKMDS.GetMarkingImage(PKMDS.Markings.Star, false));
+            trianglebinding = pbTriangle.DataBindings.Add("Image", controlsbinding, "Triangle", true, DataSourceUpdateMode.Never, PKMDS.GetMarkingImage(PKMDS.Markings.Triangle, false));
+            circlebinding = pbCircle.DataBindings.Add("Image", controlsbinding, "Circle", true, DataSourceUpdateMode.Never, PKMDS.GetMarkingImage(PKMDS.Markings.Circle, false));
+            heartbinding = pbHeart.DataBindings.Add("Image", controlsbinding, "Heart", true, DataSourceUpdateMode.Never, PKMDS.GetMarkingImage(PKMDS.Markings.Heart, false));
+            diamondbinding.Format += new ConvertEventHandler(SetMarkingImage);
+            squarebinding.Format += new ConvertEventHandler(SetMarkingImage);
+            starbinding.Format += new ConvertEventHandler(SetMarkingImage);
+            trianglebinding.Format += new ConvertEventHandler(SetMarkingImage);
+            circlebinding.Format += new ConvertEventHandler(SetMarkingImage);
+            heartbinding.Format += new ConvertEventHandler(SetMarkingImage);
+
+            /*
+cbForm.DataBindings.Add();
+numLevel.DataBindings.Add();
+txtNickname.DataBindings.Add();
+gbOTInfo.DataBindings.Add();
+lblSID.DataBindings.Add();
+numSID.DataBindings.Add();
+lblTID.DataBindings.Add();
+numTID.DataBindings.Add();
+rbOTFemale.DataBindings.Add();
+rbOTMale.DataBindings.Add();
+txtOTName.DataBindings.Add();
+lblOTName.DataBindings.Add();
+lblTNL.DataBindings.Add();
+lblEXP.DataBindings.Add();
+numEXP.DataBindings.Add();
+cbAbility.DataBindings.Add();
+lblAbility.DataBindings.Add();
+pbTNL.DataBindings.Add();
+lblAbilityFlavor.DataBindings.Add();
+gbCalcStats.DataBindings.Add();
+gbEVs.DataBindings.Add();
+gbIVs.DataBindings.Add();
+lblTotalEVs.DataBindings.Add();
+lblCharacteristic.DataBindings.Add();
+numTameness.DataBindings.Add();
+lblNature.DataBindings.Add();
+cbNature.DataBindings.Add();
+cbMove1.DataBindings.Add();
+lblMaxPP.DataBindings.Add();
+lblPP.DataBindings.Add();
+lblPPUps.DataBindings.Add();
+lblAccuracy.DataBindings.Add();
+lblPower.DataBindings.Add();
+numMove1PP.DataBindings.Add();
+numMove1PPUps.DataBindings.Add();
+txtTNL.DataBindings.Add();
+txtMinHatchSteps.DataBindings.Add();
+txtMove1MaxPP.DataBindings.Add();
+tlMoves.DataBindings.Add();
+tlMoveLabels.DataBindings.Add();
+tlMove1.DataBindings.Add();
+tlMove1Data.DataBindings.Add();
+lblMove1Accuracy.DataBindings.Add();
+lblMove1Power.DataBindings.Add();
+tlMove1MoreData.DataBindings.Add();
+pbMove1Type.DataBindings.Add();
+lblMove1Flavor.DataBindings.Add();
+pbMove1Category.DataBindings.Add();
+tlMove4.DataBindings.Add();
+tlMove4Data.DataBindings.Add();
+lblMove4Accuracy.DataBindings.Add();
+cbMove4.DataBindings.Add();
+txtMove4MaxPP.DataBindings.Add();
+numMove4PP.DataBindings.Add();
+numMove4PPUps.DataBindings.Add();
+lblMove4Power.DataBindings.Add();
+tlMove4MoreData.DataBindings.Add();
+pbMove4Category.DataBindings.Add();
+pbMove4Type.DataBindings.Add();
+lblMove4Flavor.DataBindings.Add();
+tlMove2.DataBindings.Add();
+tlMove2Data.DataBindings.Add();
+lblMove2Accuracy.DataBindings.Add();
+cbMove2.DataBindings.Add();
+txtMove2MaxPP.DataBindings.Add();
+numMove2PP.DataBindings.Add();
+numMove2PPUps.DataBindings.Add();
+lblMove2Power.DataBindings.Add();
+tlMove2MoreData.DataBindings.Add();
+pbMove2Category.DataBindings.Add();
+pbMove2Type.DataBindings.Add();
+lblMove2Flavor.DataBindings.Add();
+tlMove3.DataBindings.Add();
+tlMove3Data.DataBindings.Add();
+lblMove3Accuracy.DataBindings.Add();
+cbMove3.DataBindings.Add();
+txtMove3MaxPP.DataBindings.Add();
+numMove3PP.DataBindings.Add();
+numMove3PPUps.DataBindings.Add();
+lblMove3Power.DataBindings.Add();
+tlMove3MoreData.DataBindings.Add();
+pbMove3Category.DataBindings.Add();
+pbMove3Type.DataBindings.Add();
+lblMove3Flavor.DataBindings.Add();
+tlIVs.DataBindings.Add();
+tlTotalEVs.DataBindings.Add();
+tableLayoutPanel3.DataBindings.Add();
+txtTotalEVs.DataBindings.Add();
+tlEVs.DataBindings.Add();
+tlCalcStats.DataBindings.Add();
+lblHPStats.DataBindings.Add();
+lblAtkStats.DataBindings.Add();
+lblDefStats.DataBindings.Add();
+lblSpAtkStats.DataBindings.Add();
+lblSpDefStats.DataBindings.Add();
+lblSpeedStats.DataBindings.Add();
+numHPIV.DataBindings.Add();
+txtTNLPercent.DataBindings.Add();
+numSpeedEV.DataBindings.Add();
+numSpDefEV.DataBindings.Add();
+numSpAtkEV.DataBindings.Add();
+numDefEV.DataBindings.Add();
+numAtkEV.DataBindings.Add();
+numHPEV.DataBindings.Add();
+numSpeedIV.DataBindings.Add();
+numSpDefIV.DataBindings.Add();
+numSpAtkIV.DataBindings.Add();
+numDefIV.DataBindings.Add();
+numAtkIV.DataBindings.Add();
+txtCalcSpeed.DataBindings.Add();
+txtCalcSpDef.DataBindings.Add();
+txtCalcSpAtk.DataBindings.Add();
+txtCalcDef.DataBindings.Add();
+txtCalcAtk.DataBindings.Add();
+txtCalcHP.DataBindings.Add();
+gbMet.DataBindings.Add();
+tlMet.DataBindings.Add();
+gbEggMet.DataBindings.Add();
+tlEggMet.DataBindings.Add();
+cbEggLocation.DataBindings.Add();
+cbMetLocation.DataBindings.Add();
+dtEggDate.DataBindings.Add();
+dtMetDate.DataBindings.Add();
+cbMetAsEgg.DataBindings.Add();
+lblMetLevel.DataBindings.Add();
+numMetLevel.DataBindings.Add();
+cbCountry.DataBindings.Add();
+lblCountry.DataBindings.Add();
+cbGame.DataBindings.Add();
+lblGame.DataBindings.Add();
+cbIsEgg.DataBindings.Add();
+cbFateful.DataBindings.Add();
+cbNsPokemon.DataBindings.Add();
+gbPKRS.DataBindings.Add();
+lblPKRSStrain.DataBindings.Add();
+lblPKRSDays.DataBindings.Add();
+cbPKRSStrain.DataBindings.Add();
+cbPKRSDays.DataBindings.Add();
+lblForm.DataBindings.Add();
+             */
             // TODO: finish data bindings
+        }
+        private void SetNicknamedFlag(object bindingsource, ConvertEventArgs e)
+        {
+            Binding bs = (Binding)(bindingsource);
+            BindingSource binding = (BindingSource)(bs.DataSource);
+            PKMDS.Pokemon pkm = (PKMDS.Pokemon)(binding.DataSource);
+            pkm.IsNicknamed = true;
+        }
+        private void SetMarkingImage(object bindingsource, ConvertEventArgs e)
+        {
+            Binding bs = (Binding)(bindingsource);
+            switch (bs.BindingMemberInfo.BindingMember)
+            {
+                case "Diamond":
+                    e.Value = PKMDS.GetMarkingImage(PKMDS.Markings.Diamond, (bool)e.Value);
+                    break;
+                case "Heart":
+                    e.Value = PKMDS.GetMarkingImage(PKMDS.Markings.Heart, (bool)e.Value);
+                    break;
+                case "Star":
+                    e.Value = PKMDS.GetMarkingImage(PKMDS.Markings.Star, (bool)e.Value);
+                    break;
+                case "Circle":
+                    e.Value = PKMDS.GetMarkingImage(PKMDS.Markings.Circle, (bool)e.Value);
+                    break;
+                case "Triangle":
+                    e.Value = PKMDS.GetMarkingImage(PKMDS.Markings.Triangle, (bool)e.Value);
+                    break;
+                case "Square":
+                    e.Value = PKMDS.GetMarkingImage(PKMDS.Markings.Square, (bool)e.Value);
+                    break;
+            }
         }
         private void SetUI()
         {
@@ -315,6 +514,38 @@ namespace PKMDS_Abstract_Test
         {
 
         }
-
+        private void pbMarkings_Click(object sender, EventArgs e)
+        {
+            if ((PictureBox)(sender) == this.pbDiamond)
+            {
+                temppkm.Diamond = !(temppkm.Diamond);
+                diamondbinding.ReadValue();
+            }
+            if ((PictureBox)(sender) == this.pbTriangle)
+            {
+                temppkm.Triangle = !(temppkm.Triangle);
+                trianglebinding.ReadValue();
+            }
+            if ((PictureBox)(sender) == this.pbSquare)
+            {
+                temppkm.Square = !(temppkm.Square);
+                squarebinding.ReadValue();
+            }
+            if ((PictureBox)(sender) == this.pbHeart)
+            {
+                temppkm.Heart = !(temppkm.Heart);
+                heartbinding.ReadValue();
+            }
+            if ((PictureBox)(sender) == this.pbStar)
+            {
+                temppkm.Star = !(temppkm.Star);
+                starbinding.ReadValue();
+            }
+            if ((PictureBox)(sender) == this.pbCircle)
+            {
+                temppkm.Circle = !(temppkm.Circle);
+                circlebinding.ReadValue();
+            }
+        }
     }
 }

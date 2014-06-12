@@ -243,95 +243,7 @@ namespace PKMDS_Abstract_Test
             {
                 ((Control)pb).AllowDrop = true;
             }
-            previewbinding.DataSource = nullpkm;
-            spritebinding = new Binding("Image", previewbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
-            genderbinding = new Binding("Image", previewbinding, "GenderIcon", true, DataSourceUpdateMode.Never, null);
-            helditempicbinding = new Binding("Image", previewbinding, "ItemPic", true, DataSourceUpdateMode.Never, null);
-            ballbinding = new Binding("Image", previewbinding, "BallPic", true, DataSourceUpdateMode.Never, null);
-            shinybinding = new Binding("Image", previewbinding, "ShinyIcon", true, DataSourceUpdateMode.Never, null);
-            helditemnamebinding = new Binding("Text", previewbinding, "ItemName", false, DataSourceUpdateMode.Never, "");
-            nicknamebinding = new Binding("Text", previewbinding, "Nickname", true, DataSourceUpdateMode.Never, "");
-            levelbinding = new Binding("Text", previewbinding, "Level", true, DataSourceUpdateMode.Never, "");
-            spritebinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            genderbinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            helditempicbinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            ballbinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            shinybinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            helditemnamebinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            nicknamebinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            levelbinding.Format += new ConvertEventHandler(BindingFormatHandler);
-            pbSprite.DataBindings.Add(spritebinding);
-            pbGender.DataBindings.Add(genderbinding);
-            pbHeldItem.DataBindings.Add(helditempicbinding);
-            pbBall.DataBindings.Add(ballbinding);
-            pbShiny.DataBindings.Add(shinybinding);
-            lblHeldItem.DataBindings.Add(helditemnamebinding);
-            lblNickname.DataBindings.Add(nicknamebinding);
-            lblLevel.DataBindings.Add(levelbinding);
         }
-        private void BindingFormatHandler(object o, ConvertEventArgs e)
-        {
-            Binding binding = (Binding)(o);
-            if (binding.DataSource == null)
-            {
-                e.Value = null;
-                return;
-            }
-            BindingSource bindingsource = (BindingSource)(binding.DataSource);
-            if (bindingsource.DataSource == null)
-            {
-                e.Value = null;
-                return;
-            }
-            PKMDS.Pokemon pkm = (PKMDS.Pokemon)(bindingsource.DataSource);
-            switch (binding.BindingMemberInfo.BindingField)
-            {
-                case "Sprite":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = null; }
-                    break;
-                case "GenderIcon":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = null; }
-                    break;
-                case "ItemPic":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = null; }
-                    break;
-                case "BallPic":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = null; }
-                    break;
-                case "ShinyIcon":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = null; }
-                    break;
-                case "ItemName":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = ""; }
-                    break;
-                case "Nickname":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = ""; }
-                    break;
-                case "Level":
-                    if (pkm.SpeciesID == 0)
-                    { e.Value = ""; }
-                    else
-                    { e.Value = ((int)e.Value).ToString("Level 0"); }
-                    break;
-                default:
-                    break;
-            }
-        }
-        Binding spritebinding;
-        Binding genderbinding;
-        Binding helditempicbinding;
-        Binding ballbinding;
-        Binding shinybinding;
-        Binding helditemnamebinding;
-        Binding nicknamebinding;
-        Binding levelbinding;
         private List<PictureBox> partyPics = new List<PictureBox>();
         private List<PictureBox> boxPics = new List<PictureBox>();
         private List<PictureBox> boxGridPics = new List<PictureBox>();
@@ -351,7 +263,6 @@ namespace PKMDS_Abstract_Test
         List<BindingSource> boxnamesbinding = new List<BindingSource>();
         BindingSource boxnamebinding = new BindingSource();
         BindingSource boxwallpaperbinding = new BindingSource();
-        BindingSource previewbinding = new BindingSource();
         Color SelectionColor = Color.FromArgb(100, Color.Orange.R, Color.Orange.G, Color.Orange.B);
         private void txtBoxName_KeyDown(object sender, KeyEventArgs e)
         {
@@ -410,7 +321,7 @@ namespace PKMDS_Abstract_Test
         private void UpdateBox()
         {
             this.currentbox = this.pcstorage[this.sav.CurrentBox];
-            for (int i = 0; i < 24; i++)
+            for (int i = 0; i < 30; i++)
             {
                 boxslotsbinding[i].ResetBindings(false);
                 boxslotsbinding[i].DataSource = currentbox[i];
@@ -478,8 +389,7 @@ namespace PKMDS_Abstract_Test
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             partyPics[slot].BackColor = SelectionColor;
-            previewbinding.DataSource = party[slot].PokemonData;
-            previewbinding.ResetBindings(false);
+            PreviewPokemon(party[slot].PokemonData);
         }
         private void pbPartySlot_MouseLeave(object sender, EventArgs e)
         {
@@ -488,8 +398,7 @@ namespace PKMDS_Abstract_Test
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             partyPics[slot].BackColor = Color.Transparent;
-            previewbinding.DataSource = nullpkm;
-            previewbinding.ResetBindings(false);
+            ClearPreview();
         }
         private void pbPartySlot_MouseDown(object sender, MouseEventArgs e)
         {
@@ -546,8 +455,7 @@ namespace PKMDS_Abstract_Test
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             boxPics[slot].BackColor = SelectionColor;
-            previewbinding.DataSource = currentbox[slot];
-            previewbinding.ResetBindings(false);
+            PreviewPokemon(currentbox[slot]);
         }
         private void pbBoxSlot_MouseLeave(object sender, EventArgs e)
         {
@@ -556,8 +464,32 @@ namespace PKMDS_Abstract_Test
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
             boxPics[slot].BackColor = Color.Transparent;
-            previewbinding.DataSource = nullpkm;
-            previewbinding.ResetBindings(false);
+            ClearPreview();
+        }
+        private void PreviewPokemon(PKMDS.Pokemon pkm)
+        {
+            if (pkm.SpeciesID != 0)
+            {
+                pbSprite.Image = pkm.Sprite;
+                pbGender.Image = pkm.GenderIcon;
+                pbHeldItem.Image = pkm.ItemPic;
+                pbBall.Image = pkm.BallPic;
+                pbShiny.Image = pkm.ShinyIcon;
+                lblHeldItem.Text = PKMDS.GetItemName(pkm.ItemID);
+                lblNickname.Text = pkm.Nickname;
+                lblLevel.Text = "Level " + pkm.Level.ToString("");
+            }
+        }
+        private void ClearPreview()
+        {
+            pbSprite.Image = null;
+            pbGender.Image = null;
+            pbHeldItem.Image = null;
+            pbBall.Image = null;
+            pbShiny.Image = null;
+            lblNickname.Text = "";
+            lblLevel.Text = "";
+            lblHeldItem.Text = "";
         }
     }
 }

@@ -561,6 +561,7 @@
             this.pbDiamond.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbDiamond.TabIndex = 10;
             this.pbDiamond.TabStop = false;
+            this.pbDiamond.Click += new System.EventHandler(this.pbMarkings_Click);
             // 
             // pbStar
             // 
@@ -570,6 +571,7 @@
             this.pbStar.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbStar.TabIndex = 9;
             this.pbStar.TabStop = false;
+            this.pbStar.Click += new System.EventHandler(this.pbMarkings_Click);
             // 
             // pbHeart
             // 
@@ -579,6 +581,7 @@
             this.pbHeart.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbHeart.TabIndex = 8;
             this.pbHeart.TabStop = false;
+            this.pbHeart.Click += new System.EventHandler(this.pbMarkings_Click);
             // 
             // pbSquare
             // 
@@ -588,6 +591,7 @@
             this.pbSquare.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbSquare.TabIndex = 7;
             this.pbSquare.TabStop = false;
+            this.pbSquare.Click += new System.EventHandler(this.pbMarkings_Click);
             // 
             // pbTriangle
             // 
@@ -597,6 +601,7 @@
             this.pbTriangle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbTriangle.TabIndex = 6;
             this.pbTriangle.TabStop = false;
+            this.pbTriangle.Click += new System.EventHandler(this.pbMarkings_Click);
             // 
             // pbCircle
             // 
@@ -606,6 +611,7 @@
             this.pbCircle.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbCircle.TabIndex = 5;
             this.pbCircle.TabStop = false;
+            this.pbCircle.Click += new System.EventHandler(this.pbMarkings_Click);
             // 
             // pbShiny
             // 

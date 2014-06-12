@@ -23,6 +23,12 @@ namespace PKMDS_Abstract_Test
         Binding heartbinding;
         Binding starbinding;
         Binding formbinding;
+        Binding otnamecolorbinding;
+        Binding attackstatcolorbinding;
+        Binding defensestatcolorbinding;
+        Binding specialattackstatcolorbinding;
+        Binding specialdefensestatcolorbinding;
+        Binding speedstatcolorbinding;
         bool uiset = false;
         public frmPKMViewer()
         {
@@ -66,17 +72,26 @@ namespace PKMDS_Abstract_Test
             heartbinding.Format += new ConvertEventHandler(SetMarkingImage);
             formbinding = cbForm.DataBindings.Add("SelectedIndex", formsbindingsource, "FormID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
             formbinding.Format += new ConvertEventHandler(FormConvert);
+            btnApply.DataBindings.Add("Enabled", controlsbinding, "IsModified", false, DataSourceUpdateMode.Never, false);
+            numLevel.DataBindings.Add("Value", controlsbinding, "Level", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            rbOTMale.DataBindings.Add("Checked", controlsbinding, "OTIsMale", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            rbOTFemale.DataBindings.Add("Checked", controlsbinding, "OTIsFemale", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            txtOTName.DataBindings.Add("Text", controlsbinding, "OTName", true, DataSourceUpdateMode.OnValidation, "");
+            otnamecolorbinding = txtOTName.DataBindings.Add("ForeColor", controlsbinding, "OTIsMale", true, DataSourceUpdateMode.Never, Color.Black);
+            otnamecolorbinding.Format += new ConvertEventHandler(OTNameColorConvert);
+            attackstatcolorbinding = lblAtkStats.DataBindings.Add("ForeColor", controlsbinding, "AttackEffect", true, DataSourceUpdateMode.Never, Color.Black);
+            defensestatcolorbinding = lblDefStats.DataBindings.Add("ForeColor", controlsbinding, "DefenseEffect", true, DataSourceUpdateMode.Never, Color.Black);
+            specialattackstatcolorbinding = lblSpAtkStats.DataBindings.Add("ForeColor", controlsbinding, "SpecialAttackEffect", true, DataSourceUpdateMode.Never, Color.Black);
+            specialdefensestatcolorbinding = lblSpDefStats.DataBindings.Add("ForeColor", controlsbinding, "SpecialDefenseEffect", true, DataSourceUpdateMode.Never, Color.Black);
+            speedstatcolorbinding = lblSpeedStats.DataBindings.Add("ForeColor", controlsbinding, "SpeedEffect", true, DataSourceUpdateMode.Never, Color.Black);
+            attackstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            defensestatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            specialattackstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            specialdefensestatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            speedstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            cbNature.DataBindings.Add("SelectedValue", controlsbinding, "NatureID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
 
             /*
-numLevel.DataBindings.Add();
-txtNickname.DataBindings.Add();
-gbOTInfo.DataBindings.Add();
-lblSID.DataBindings.Add();
-numSID.DataBindings.Add();
-lblTID.DataBindings.Add();
-numTID.DataBindings.Add();
-rbOTFemale.DataBindings.Add();
-rbOTMale.DataBindings.Add();
 txtOTName.DataBindings.Add();
 lblOTName.DataBindings.Add();
 lblTNL.DataBindings.Add();
@@ -244,6 +259,32 @@ lblForm.DataBindings.Add();
             {
                 temppkm.FormID = Convert.ToByte(cbForm.Items.Count - 1);
                 controlsbinding.ResetBindings(false);
+            }
+        }
+        private void OTNameColorConvert(object bindingsource, ConvertEventArgs e)
+        {
+            if ((bool)(e.Value) == true)
+            {
+                e.Value = Color.Blue;
+            }
+            else
+            {
+                e.Value = Color.Red;
+            }
+        }
+        private void StatColorConvert(object bindingsource, ConvertEventArgs e)
+        {
+            switch ((PKMDS.NatureEffect)(e.Value))
+            {
+                case PKMDS.NatureEffect.Increase:
+                    e.Value = Color.Red;
+                    break;
+                case PKMDS.NatureEffect.Decrease:
+                    e.Value = Color.Blue;
+                    break;
+                case PKMDS.NatureEffect.NoEffect:
+                    e.Value = Color.Black;
+                    break;
             }
         }
         private void SetNicknamedFlag(object bindingsource, ConvertEventArgs e)
@@ -565,7 +606,9 @@ lblForm.DataBindings.Add();
         }
         private void SavePKM()
         {
+            temppkm.FixChecksum();
             pkm.Data = temppkm.Data;
+            controlsbinding.ResetBindings(false);
         }
         private void frmPKMViewer_Load(object sender, EventArgs e)
         {
@@ -582,11 +625,18 @@ lblForm.DataBindings.Add();
         }
         private void btnExport_Click(object sender, EventArgs e)
         {
-
-        }
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-
+            string filename = "";
+            if (fileSave.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+            {
+                filename = fileSave.FileName;
+                if (filename != "")
+                {
+                    temppkm.FixChecksum();
+                    System.IO.FileInfo fo = new System.IO.FileInfo(filename);
+                    string extension = fo.Extension.ToLower().Replace(".", "");
+                    temppkm.WriteToFile(filename, (extension == "bin") || (extension == "ek5"));
+                }
+            }
         }
         private void pbMarkings_Click(object sender, EventArgs e)
         {
@@ -624,6 +674,13 @@ lblForm.DataBindings.Add();
         private void cbSpecies_SelectedIndexChanged(object sender, EventArgs e)
         {
             SetForms();
+        }
+        private void frmPKMViewer_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (temppkm.IsModified)
+            {
+                e.Cancel = (MessageBox.Show("If you close this window you will lose unsaved changes. Close this window anyway?", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.No);
+            }
         }
     }
 }

@@ -355,7 +355,6 @@
             this.btnClose.TabIndex = 3;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnExport
             // 
@@ -2564,6 +2563,7 @@
             this.Name = "frmPKMViewer";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Pokémon Viewer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmPKMViewer_FormClosing);
             this.Load += new System.EventHandler(this.frmPKMViewer_Load);
             this.tlMain.ResumeLayout(false);
             this.tlButtons.ResumeLayout(false);

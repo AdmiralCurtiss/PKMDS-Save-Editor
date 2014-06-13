@@ -90,17 +90,12 @@ namespace PKMDS_Abstract_Test
             specialdefensestatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
             speedstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
             cbNature.DataBindings.Add("SelectedValue", controlsbinding, "NatureID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            numEXP.DataBindings.Add("Value", controlsbinding, "EXP", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            cbAbility.DataBindings.Add("SelectedValue", controlsbinding, "AbilityID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            lblAbilityFlavor.DataBindings.Add("Text", controlsbinding, "AbilityFlavor", false, DataSourceUpdateMode.Never, "");
 
             /*
-txtOTName.DataBindings.Add();
-lblOTName.DataBindings.Add();
-lblTNL.DataBindings.Add();
-lblEXP.DataBindings.Add();
-numEXP.DataBindings.Add();
-cbAbility.DataBindings.Add();
-lblAbility.DataBindings.Add();
 pbTNL.DataBindings.Add();
-lblAbilityFlavor.DataBindings.Add();
 gbCalcStats.DataBindings.Add();
 gbEVs.DataBindings.Add();
 gbIVs.DataBindings.Add();
@@ -255,7 +250,7 @@ lblForm.DataBindings.Add();
             {
                 e.Value = -1;
             }
-            if (Convert.ToInt32(e.Value) > cbForm.Items.Count)
+            if (Convert.ToInt32(e.Value) >= cbForm.Items.Count)
             {
                 temppkm.FormID = Convert.ToByte(cbForm.Items.Count - 1);
                 controlsbinding.ResetBindings(false);
@@ -370,6 +365,10 @@ lblForm.DataBindings.Add();
                     {
                         cbForm.Items.AddRange(PKMDS.GetPKMFormNames(temppkm.SpeciesID));
                         cbForm.Enabled = true;
+                        if ((int)(temppkm.FormID) >= cbForm.Items.Count)
+                        {
+                            temppkm.FormID = (byte)(cbForm.Items.Count - 1);
+                        }
                         formsbindingsource.ResetBindings(false);
                     }
                     else

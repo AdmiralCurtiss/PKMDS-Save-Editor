@@ -107,8 +107,8 @@
             this.txtCalcAtk = new System.Windows.Forms.TextBox();
             this.txtCalcHP = new System.Windows.Forms.TextBox();
             this.gbEVs = new System.Windows.Forms.GroupBox();
+            this.tlEVsGB = new System.Windows.Forms.TableLayoutPanel();
             this.tlTotalEVs = new System.Windows.Forms.TableLayoutPanel();
-            this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.txtTotalEVs = new System.Windows.Forms.TextBox();
             this.lblTotalEVs = new System.Windows.Forms.Label();
             this.tlEVs = new System.Windows.Forms.TableLayoutPanel();
@@ -243,8 +243,8 @@
             this.gbCalcStats.SuspendLayout();
             this.tlCalcStats.SuspendLayout();
             this.gbEVs.SuspendLayout();
+            this.tlEVsGB.SuspendLayout();
             this.tlTotalEVs.SuspendLayout();
-            this.tableLayoutPanel3.SuspendLayout();
             this.tlEVs.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSpeedEV)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSpDefEV)).BeginInit();
@@ -455,6 +455,8 @@
             // 
             this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBall.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbBall.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbBall.FormattingEnabled = true;
             this.cbBall.Location = new System.Drawing.Point(103, 43);
             this.cbBall.Margin = new System.Windows.Forms.Padding(0);
@@ -516,6 +518,8 @@
             // 
             this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbForm.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbForm.Enabled = false;
             this.cbForm.FormattingEnabled = true;
             this.cbForm.Location = new System.Drawing.Point(3, 154);
@@ -527,6 +531,8 @@
             // 
             this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSpecies.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbSpecies.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbSpecies.FormattingEnabled = true;
             this.cbSpecies.Location = new System.Drawing.Point(3, 112);
             this.cbSpecies.Name = "cbSpecies";
@@ -547,6 +553,8 @@
             // 
             this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbHeldItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbHeldItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbHeldItem.FormattingEnabled = true;
             this.cbHeldItem.Location = new System.Drawing.Point(39, 240);
             this.cbHeldItem.Name = "cbHeldItem";
@@ -787,6 +795,8 @@
             // 
             this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAbility.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAbility.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAbility.FormattingEnabled = true;
             this.cbAbility.Location = new System.Drawing.Point(199, 90);
             this.cbAbility.Name = "cbAbility";
@@ -1068,6 +1078,8 @@
             // 
             this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbNature.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbNature.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbNature.FormattingEnabled = true;
             this.cbNature.Location = new System.Drawing.Point(6, 193);
             this.cbNature.Name = "cbNature";
@@ -1210,7 +1222,7 @@
             // 
             // gbEVs
             // 
-            this.gbEVs.Controls.Add(this.tlTotalEVs);
+            this.gbEVs.Controls.Add(this.tlEVsGB);
             this.gbEVs.Location = new System.Drawing.Point(111, 6);
             this.gbEVs.Name = "gbEVs";
             this.gbEVs.Size = new System.Drawing.Size(71, 221);
@@ -1218,35 +1230,35 @@
             this.gbEVs.TabStop = false;
             this.gbEVs.Text = "EVs";
             // 
+            // tlEVsGB
+            // 
+            this.tlEVsGB.ColumnCount = 1;
+            this.tlEVsGB.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlEVsGB.Controls.Add(this.tlTotalEVs, 0, 1);
+            this.tlEVsGB.Controls.Add(this.tlEVs, 0, 0);
+            this.tlEVsGB.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tlEVsGB.Location = new System.Drawing.Point(3, 16);
+            this.tlEVsGB.Name = "tlEVsGB";
+            this.tlEVsGB.RowCount = 2;
+            this.tlEVsGB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tlEVsGB.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
+            this.tlEVsGB.Size = new System.Drawing.Size(65, 202);
+            this.tlEVsGB.TabIndex = 0;
+            // 
             // tlTotalEVs
             // 
             this.tlTotalEVs.ColumnCount = 1;
             this.tlTotalEVs.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlTotalEVs.Controls.Add(this.tableLayoutPanel3, 0, 1);
-            this.tlTotalEVs.Controls.Add(this.tlEVs, 0, 0);
+            this.tlTotalEVs.Controls.Add(this.txtTotalEVs, 0, 1);
+            this.tlTotalEVs.Controls.Add(this.lblTotalEVs, 0, 0);
             this.tlTotalEVs.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tlTotalEVs.Location = new System.Drawing.Point(3, 16);
+            this.tlTotalEVs.Location = new System.Drawing.Point(3, 155);
             this.tlTotalEVs.Name = "tlTotalEVs";
             this.tlTotalEVs.RowCount = 2;
-            this.tlTotalEVs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tlTotalEVs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 50F));
-            this.tlTotalEVs.Size = new System.Drawing.Size(65, 202);
-            this.tlTotalEVs.TabIndex = 0;
-            // 
-            // tableLayoutPanel3
-            // 
-            this.tableLayoutPanel3.ColumnCount = 1;
-            this.tableLayoutPanel3.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel3.Controls.Add(this.txtTotalEVs, 0, 1);
-            this.tableLayoutPanel3.Controls.Add(this.lblTotalEVs, 0, 0);
-            this.tableLayoutPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel3.Location = new System.Drawing.Point(3, 155);
-            this.tableLayoutPanel3.Name = "tableLayoutPanel3";
-            this.tableLayoutPanel3.RowCount = 2;
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel3.Size = new System.Drawing.Size(59, 44);
-            this.tableLayoutPanel3.TabIndex = 1;
+            this.tlTotalEVs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlTotalEVs.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tlTotalEVs.Size = new System.Drawing.Size(59, 44);
+            this.tlTotalEVs.TabIndex = 1;
             // 
             // txtTotalEVs
             // 
@@ -1636,6 +1648,8 @@
             // cbMove4
             // 
             this.cbMove4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove4.FormattingEnabled = true;
             this.cbMove4.Location = new System.Drawing.Point(0, 4);
             this.cbMove4.Margin = new System.Windows.Forms.Padding(0);
@@ -1882,6 +1896,8 @@
             // cbMove1
             // 
             this.cbMove1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove1.FormattingEnabled = true;
             this.cbMove1.Location = new System.Drawing.Point(0, 4);
             this.cbMove1.Margin = new System.Windows.Forms.Padding(0);
@@ -2043,6 +2059,8 @@
             // cbMove2
             // 
             this.cbMove2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove2.FormattingEnabled = true;
             this.cbMove2.Location = new System.Drawing.Point(0, 4);
             this.cbMove2.Margin = new System.Windows.Forms.Padding(0);
@@ -2206,6 +2224,8 @@
             // cbMove3
             // 
             this.cbMove3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove3.FormattingEnabled = true;
             this.cbMove3.Location = new System.Drawing.Point(0, 4);
             this.cbMove3.Margin = new System.Windows.Forms.Padding(0);
@@ -2371,6 +2391,8 @@
             // 
             this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCountry.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbCountry.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Location = new System.Drawing.Point(55, 146);
             this.cbCountry.Name = "cbCountry";
@@ -2390,6 +2412,8 @@
             // 
             this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbGame.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbGame.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbGame.FormattingEnabled = true;
             this.cbGame.Location = new System.Drawing.Point(55, 119);
             this.cbGame.Name = "cbGame";
@@ -2451,6 +2475,8 @@
             // 
             // cbEggLocation
             // 
+            this.cbEggLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbEggLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbEggLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbEggLocation.Enabled = false;
             this.cbEggLocation.FormattingEnabled = true;
@@ -2509,6 +2535,8 @@
             // 
             // cbMetLocation
             // 
+            this.cbMetLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMetLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMetLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbMetLocation.FormattingEnabled = true;
             this.cbMetLocation.Location = new System.Drawing.Point(3, 3);
@@ -2602,9 +2630,9 @@
             this.tlCalcStats.ResumeLayout(false);
             this.tlCalcStats.PerformLayout();
             this.gbEVs.ResumeLayout(false);
+            this.tlEVsGB.ResumeLayout(false);
             this.tlTotalEVs.ResumeLayout(false);
-            this.tableLayoutPanel3.ResumeLayout(false);
-            this.tableLayoutPanel3.PerformLayout();
+            this.tlTotalEVs.PerformLayout();
             this.tlEVs.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.numSpeedEV)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numSpDefEV)).EndInit();
@@ -2795,8 +2823,8 @@
         private System.Windows.Forms.PictureBox pbMove3Type;
         private System.Windows.Forms.Label lblMove3Flavor;
         private System.Windows.Forms.TableLayoutPanel tlIVs;
+        private System.Windows.Forms.TableLayoutPanel tlEVsGB;
         private System.Windows.Forms.TableLayoutPanel tlTotalEVs;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel3;
         private System.Windows.Forms.TextBox txtTotalEVs;
         private System.Windows.Forms.TableLayoutPanel tlEVs;
         private System.Windows.Forms.TableLayoutPanel tlCalcStats;

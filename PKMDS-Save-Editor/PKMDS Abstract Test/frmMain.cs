@@ -21,7 +21,7 @@ namespace PKMDS_Abstract_Test
         PKMDS.Box currentbox = new PKMDS.Box();
         frmBoxes BoxesForm = new frmBoxes();
         BindingSource controlsbinding = new BindingSource();
-        string filename = @"F:\Google Drive\Home Desktop\NDS\NO&GBA\BATTERY\std-pokemonblack.SAV";// @"F:\Google Drive\Home Desktop\Saves\Mike B Sav_AbstractTest.sav";
+        string filename = "Test-Save-White-2.sav";
         private void frmMain_Load(object sender, EventArgs e)
         {
             sav = new PKMDS.Save(filename);
@@ -29,8 +29,8 @@ namespace PKMDS_Abstract_Test
             currentbox = pcstorage[0];
             controlsbinding.DataSource = currentbox[0];
             numSpeciesID.DataBindings.Add("Value", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
-            pbIcon.DataBindings.Add("Image", controlsbinding, "Icon", true, DataSourceUpdateMode.Never, null);
+            //pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
+            //pbIcon.DataBindings.Add("Image", controlsbinding, "Icon", true, DataSourceUpdateMode.Never, null);
             numSpeciesID.Minimum = 1;
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)

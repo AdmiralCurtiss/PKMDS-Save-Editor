@@ -14,8 +14,9 @@ namespace PKMDS_Abstract_Test
         private PKMDS.Pokemon pkm;
         private PKMDS.Pokemon temppkm = new PKMDS.Pokemon();
         BindingSource controlsbinding = new BindingSource();
-        BindingSource formsbindingsource = new BindingSource();
-        BindingSource eggdatebindingsource = new BindingSource();
+        //BindingSource formsbindingsource = new BindingSource();
+        //BindingSource eggdatebindingsource = new BindingSource();
+        //BindingSource movesbindingsource = new BindingSource();
         Binding nicknamedbinding;
         Binding diamondbinding;
         Binding squarebinding;
@@ -23,7 +24,7 @@ namespace PKMDS_Abstract_Test
         Binding circlebinding;
         Binding heartbinding;
         Binding starbinding;
-        Binding formbinding;
+        //Binding formbinding;
         Binding otnamecolorbinding;
         Binding attackstatcolorbinding;
         Binding defensestatcolorbinding;
@@ -44,7 +45,10 @@ namespace PKMDS_Abstract_Test
         Binding maxspeedevbinding;
         Binding maxtamenessbinding;
         Binding maxtotalevbinding;
-        Binding eggdatebinding;
+        //Binding eggdatebinding;
+        //Binding move2binding;
+        //Binding move3binding;
+        //Binding move4binding;
         bool uiset = false;
         public frmPKMViewer()
         {
@@ -54,22 +58,22 @@ namespace PKMDS_Abstract_Test
             {
                 SetUI();
             }
-            numSpecies.DataBindings.Add("Value", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            numSpecies.DataBindings.Add("Value", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnValidation, 0);
             pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
             pbBall.DataBindings.Add("Image", controlsbinding, "BallPic", true, DataSourceUpdateMode.Never, null);
-            cbSpecies.DataBindings.Add("SelectedValue", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbHeldItem.DataBindings.Add("SelectedValue", controlsbinding, "ItemID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            cbSpecies.DataBindings.Add("SelectedValue", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnValidation, 0);
+            cbHeldItem.DataBindings.Add("SelectedValue", controlsbinding, "ItemID", false, DataSourceUpdateMode.OnValidation, 0);
             lblHeldItemFlavor.DataBindings.Add("Text", controlsbinding, "ItemFlavor", false, DataSourceUpdateMode.Never, "");
             pbHeldItem.DataBindings.Add("Image", controlsbinding, "ItemPic", true, DataSourceUpdateMode.Never, null);
-            numTID.DataBindings.Add("Value", controlsbinding, "TID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            numSID.DataBindings.Add("Value", controlsbinding, "SID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            numTID.DataBindings.Add("Value", controlsbinding, "TID", false, DataSourceUpdateMode.OnValidation, 0);
+            numSID.DataBindings.Add("Value", controlsbinding, "SID", false, DataSourceUpdateMode.OnValidation, 0);
             pbGender.DataBindings.Add("Image", controlsbinding, "GenderIcon", true, DataSourceUpdateMode.Never, null);
             pbType1.DataBindings.Add("Image", controlsbinding, "TypePic1", true, DataSourceUpdateMode.Never, null);
             pbType2.DataBindings.Add("Image", controlsbinding, "TypePic2", true, DataSourceUpdateMode.Never, null);
-            cbBall.DataBindings.Add("SelectedValue", controlsbinding, "BallID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            cbBall.DataBindings.Add("SelectedValue", controlsbinding, "BallID", false, DataSourceUpdateMode.OnValidation, 0);
             pbShiny.DataBindings.Add("Image", controlsbinding, "ShinyIcon", true, DataSourceUpdateMode.Never, null);
             pbPokerus.DataBindings.Add("Image", controlsbinding, "PokerusIcon", true, DataSourceUpdateMode.Never, null);
-            chkNicknamed.DataBindings.Add("Checked", controlsbinding, "IsNicknamed", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            chkNicknamed.DataBindings.Add("Checked", controlsbinding, "IsNicknamed", false, DataSourceUpdateMode.OnValidation, false);
             nicknamedbinding = txtNickname.DataBindings.Add("Text", controlsbinding, "Nickname", true, DataSourceUpdateMode.OnValidation, "");
             nicknamedbinding.Parse += new ConvertEventHandler(SetNicknamedFlag);
             diamondbinding = pbDiamond.DataBindings.Add("Image", controlsbinding, "Diamond", true, DataSourceUpdateMode.Never, PKMDS.GetMarkingImage(PKMDS.Markings.Diamond, false));
@@ -84,35 +88,38 @@ namespace PKMDS_Abstract_Test
             trianglebinding.Format += new ConvertEventHandler(SetMarkingImage);
             circlebinding.Format += new ConvertEventHandler(SetMarkingImage);
             heartbinding.Format += new ConvertEventHandler(SetMarkingImage);
-            formbinding = cbForm.DataBindings.Add("SelectedIndex", formsbindingsource, "FormID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            formbinding.Format += new ConvertEventHandler(FormConvert);
-            btnApply.DataBindings.Add("Enabled", controlsbinding, "IsModified", false, DataSourceUpdateMode.Never, false);
+            //formbinding = cbForm.DataBindings.Add("SelectedIndex", formsbindingsource, "FormID", false, DataSourceUpdateMode.OnValidation, -1);
+            //formbinding.Format += new ConvertEventHandler(FormConvert);
+            //btnApply.DataBindings.Add("Enabled", controlsbinding, "IsModified", false, DataSourceUpdateMode.Never, false);
             numLevel.DataBindings.Add("Value", controlsbinding, "Level", false, DataSourceUpdateMode.OnValidation, 0);
-            rbOTMale.DataBindings.Add("Checked", controlsbinding, "OTIsMale", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            rbOTFemale.DataBindings.Add("Checked", controlsbinding, "OTIsFemale", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            rbOTMale.DataBindings.Add("Checked", controlsbinding, "OTIsMale", false, DataSourceUpdateMode.OnValidation, false);
+            rbOTFemale.DataBindings.Add("Checked", controlsbinding, "OTIsFemale", false, DataSourceUpdateMode.OnValidation, false);
             txtOTName.DataBindings.Add("Text", controlsbinding, "OTName", true, DataSourceUpdateMode.OnValidation, "");
             otnamecolorbinding = txtOTName.DataBindings.Add("ForeColor", controlsbinding, "OTIsMale", true, DataSourceUpdateMode.Never, Color.Black);
-            otnamecolorbinding.Format += new ConvertEventHandler(OTNameColorConvert);
+            //otnamecolorbinding.Format += new ConvertEventHandler(OTNameColorConvert);
             attackstatcolorbinding = lblAtkStats.DataBindings.Add("ForeColor", controlsbinding, "AttackEffect", true, DataSourceUpdateMode.Never, Color.Black);
             defensestatcolorbinding = lblDefStats.DataBindings.Add("ForeColor", controlsbinding, "DefenseEffect", true, DataSourceUpdateMode.Never, Color.Black);
             specialattackstatcolorbinding = lblSpAtkStats.DataBindings.Add("ForeColor", controlsbinding, "SpecialAttackEffect", true, DataSourceUpdateMode.Never, Color.Black);
             specialdefensestatcolorbinding = lblSpDefStats.DataBindings.Add("ForeColor", controlsbinding, "SpecialDefenseEffect", true, DataSourceUpdateMode.Never, Color.Black);
             speedstatcolorbinding = lblSpeedStats.DataBindings.Add("ForeColor", controlsbinding, "SpeedEffect", true, DataSourceUpdateMode.Never, Color.Black);
-            attackstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
-            defensestatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
-            specialattackstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
-            specialdefensestatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
-            speedstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
-            cbNature.DataBindings.Add("SelectedValue", controlsbinding, "NatureID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            //attackstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            //defensestatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            //specialattackstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            //specialdefensestatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            //speedstatcolorbinding.Format += new ConvertEventHandler(StatColorConvert);
+            cbNature.DataBindings.Add("SelectedValue", controlsbinding, "NatureID", false, DataSourceUpdateMode.OnValidation, 0);
             numEXP.DataBindings.Add("Value", controlsbinding, "EXP", false, DataSourceUpdateMode.OnValidation, 0);
-            cbAbility.DataBindings.Add("SelectedValue", controlsbinding, "AbilityID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            cbAbility.DataBindings.Add("SelectedValue", controlsbinding, "AbilityID", false, DataSourceUpdateMode.OnValidation, 0);
             lblAbilityFlavor.DataBindings.Add("Text", controlsbinding, "AbilityFlavor", false, DataSourceUpdateMode.Never, "");
             lblCharacteristic.DataBindings.Add("Text", controlsbinding, "Characteristic", false, DataSourceUpdateMode.Never, "");
             maxtamenessbinding = numTameness.DataBindings.Add("Value", controlsbinding, "Tameness", false, DataSourceUpdateMode.OnValidation, 0);
-            cbMove1.DataBindings.Add("SelectedValue", controlsbinding, "Move1ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbMove2.DataBindings.Add("SelectedValue", controlsbinding, "Move2ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbMove3.DataBindings.Add("SelectedValue", controlsbinding, "Move3ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbMove4.DataBindings.Add("SelectedValue", controlsbinding, "Move4ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            //cbMove1.DataBindings.Add("SelectedValue", movesbindingsource, "Move1ID", true, DataSourceUpdateMode.OnValidation, -1);
+            //move2binding = cbMove2.DataBindings.Add("SelectedValue", movesbindingsource, "Move2ID", true, DataSourceUpdateMode.OnValidation, -1);
+            //move3binding = cbMove3.DataBindings.Add("SelectedValue", movesbindingsource, "Move3ID", true, DataSourceUpdateMode.OnValidation, -1);
+            //move4binding = cbMove4.DataBindings.Add("SelectedValue", movesbindingsource, "Move4ID", true, DataSourceUpdateMode.OnValidation, -1);
+            //move2binding.Format += new ConvertEventHandler(MoveEnabledFormat);
+            //move3binding.Format += new ConvertEventHandler(MoveEnabledFormat);
+            //move4binding.Format += new ConvertEventHandler(MoveEnabledFormat);
             numMove1PP.DataBindings.Add("Value", controlsbinding, "Move1PP", false, DataSourceUpdateMode.OnValidation, 0);
             numMove1PPUps.DataBindings.Add("Value", controlsbinding, "Move1PPUps", false, DataSourceUpdateMode.OnValidation, 0);
             numMove2PP.DataBindings.Add("Value", controlsbinding, "Move2PP", false, DataSourceUpdateMode.OnValidation, 0);
@@ -137,41 +144,43 @@ namespace PKMDS_Abstract_Test
             maxspatkevbinding = numSpAtkEV.DataBindings.Add("Value", controlsbinding, "SpecialAttackEV", false, DataSourceUpdateMode.OnValidation, 0);
             maxspdefevbinding = numSpDefEV.DataBindings.Add("Value", controlsbinding, "SpecialDefenseEV", false, DataSourceUpdateMode.OnValidation, 0);
             maxspeedevbinding = numSpeedEV.DataBindings.Add("Value", controlsbinding, "SpeedEV", false, DataSourceUpdateMode.OnValidation, 0);
-            txtCalcHP.DataBindings.Add("Text", controlsbinding, "CalculatedHP", true, DataSourceUpdateMode.Never, "");
-            txtCalcAtk.DataBindings.Add("Text", controlsbinding, "CalculatedAttack", true, DataSourceUpdateMode.Never, "");
-            txtCalcDef.DataBindings.Add("Text", controlsbinding, "CalculatedDefense", true, DataSourceUpdateMode.Never, "");
-            txtCalcSpAtk.DataBindings.Add("Text", controlsbinding, "CalculatedSpecialAttack", true, DataSourceUpdateMode.Never, "");
-            txtCalcSpDef.DataBindings.Add("Text", controlsbinding, "CalculatedSpecialDefense", true, DataSourceUpdateMode.Never, "");
-            txtCalcSpeed.DataBindings.Add("Text", controlsbinding, "CalculatedSpeed", true, DataSourceUpdateMode.Never, "");
+            txtCalcHP.DataBindings.Add("Text", controlsbinding, "CalculatedHP", true, DataSourceUpdateMode.Never, "0");
+            txtCalcAtk.DataBindings.Add("Text", controlsbinding, "CalculatedAttack", true, DataSourceUpdateMode.Never, "0");
+            txtCalcDef.DataBindings.Add("Text", controlsbinding, "CalculatedDefense", true, DataSourceUpdateMode.Never, "0");
+            txtCalcSpAtk.DataBindings.Add("Text", controlsbinding, "CalculatedSpecialAttack", true, DataSourceUpdateMode.Never, "0");
+            txtCalcSpDef.DataBindings.Add("Text", controlsbinding, "CalculatedSpecialDefense", true, DataSourceUpdateMode.Never, "0");
+            txtCalcSpeed.DataBindings.Add("Text", controlsbinding, "CalculatedSpeed", true, DataSourceUpdateMode.Never, "0");
             maxtotalevbinding = txtTotalEVs.DataBindings.Add("Text", controlsbinding, "TotalEVs", true, DataSourceUpdateMode.Never, "0");
-            maxtamenessbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxhpivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxspatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxspdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxspeedivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxhpevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxspatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxspdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxspeedevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            maxtotalevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            cbIsEgg.DataBindings.Add("Checked", controlsbinding, "IsEgg", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            cbFateful.DataBindings.Add("Checked", controlsbinding, "IsFateful", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            cbNsPokemon.DataBindings.Add("Checked", controlsbinding, "IsNsPokemon", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            cbMetAsEgg.DataBindings.Add("Checked", controlsbinding, "MetAsEgg", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            cbPKRSStrain.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusStrain", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            cbPKRSDays.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusDays", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            cbEggLocation.DataBindings.Add("SelectedValue", controlsbinding, "EggLocationID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            cbMetLocation.DataBindings.Add("SelectedValue", controlsbinding, "MetLocationID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            //maxtamenessbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxhpivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxspatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxspdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxspeedivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxhpevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxspatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxspdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxspeedevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            //maxtotalevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            cbIsEgg.DataBindings.Add("Checked", controlsbinding, "IsEgg", false, DataSourceUpdateMode.OnValidation, false);
+            cbFateful.DataBindings.Add("Checked", controlsbinding, "IsFateful", false, DataSourceUpdateMode.OnValidation, false);
+            cbNsPokemon.DataBindings.Add("Checked", controlsbinding, "IsNsPokemon", false, DataSourceUpdateMode.OnValidation, false);
+            cbMetAsEgg.DataBindings.Add("Checked", controlsbinding, "MetAsEgg", false, DataSourceUpdateMode.OnValidation, false);
+            cbPKRSStrain.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusStrain", false, DataSourceUpdateMode.OnValidation, 0);
+            cbPKRSDays.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusDays", false, DataSourceUpdateMode.OnValidation, 0);
+            cbEggLocation.DataBindings.Add("SelectedValue", controlsbinding, "EggLocationID", false, DataSourceUpdateMode.OnValidation, 0);
+            cbMetLocation.DataBindings.Add("SelectedValue", controlsbinding, "MetLocationID", false, DataSourceUpdateMode.OnValidation, 0);
             dtMetDate.DataBindings.Add("Value", controlsbinding, "MetDate", false, DataSourceUpdateMode.OnValidation, dtMetDate.MinDate);
-            eggdatebinding = dtEggDate.DataBindings.Add("Value", eggdatebindingsource, "EggDate", false, DataSourceUpdateMode.OnValidation, new DateTime(1, 1, 1));
-            eggdatebinding.Format += new ConvertEventHandler(EggDateFormat);
-            numMetLevel.DataBindings.Add("Value", controlsbinding, "MetLevel", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            cbCountry.DataBindings.Add("SelectedValue", controlsbinding, "LanguageID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbGame.DataBindings.Add("SelectedValue", controlsbinding, "HometownID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            //eggdatebinding = dtEggDate.DataBindings.Add("Value", eggdatebindingsource, "EggDate", false, DataSourceUpdateMode.OnValidation, new DateTime(1, 1, 1));
+            //eggdatebinding.Format += new ConvertEventHandler(EggDateFormat);
+            numMetLevel.DataBindings.Add("Value", controlsbinding, "MetLevel", false, DataSourceUpdateMode.OnValidation, 0);
+            cbCountry.DataBindings.Add("SelectedValue", controlsbinding, "LanguageID", false, DataSourceUpdateMode.OnValidation, 0);
+            cbGame.DataBindings.Add("SelectedValue", controlsbinding, "HometownID", false, DataSourceUpdateMode.OnValidation, 0);
+            //dtEggDate.DataBindings.Add("Enabled", cbMetAsEgg, "Checked", false, DataSourceUpdateMode.Never, false);
+            //cbEggLocation.DataBindings.Add("Enabled", cbMetAsEgg, "Checked", false, DataSourceUpdateMode.Never, false);
 
             /*
 txtMinHatchSteps.DataBindings.Add();
@@ -202,148 +211,166 @@ lblMove3Flavor.DataBindings.Add();
              */
             // TODO: finish data bindings
             controlsbinding.DataSource = temppkm;
-            formsbindingsource.DataSource = temppkm;
-            eggdatebindingsource.DataSource = temppkm;
+            //formsbindingsource.DataSource = temppkm;
+            //eggdatebindingsource.DataSource = temppkm;
+            //movesbindingsource.DataSource = temppkm;
         }
-        private void EggDateFormat(object bindingsource, ConvertEventArgs e)
-        {
-            Binding binding = (Binding)(bindingsource);
-            if (Convert.ToDateTime(e.Value) == new DateTime(1, 1, 1))
-            {
-                //binding.ControlUpdateMode = ControlUpdateMode.Never;
-                eggdatebindingsource.SuspendBinding();
-                e.Value = dtEggDate.MinDate;
-            }
-            else
-            {
-                //binding.ControlUpdateMode = ControlUpdateMode.OnPropertyChanged;
-                eggdatebindingsource.ResumeBinding();
-            }
-        }
-        private void FormConvert(object bindingsource, ConvertEventArgs e)
-        {
-            UInt16 speciesid = temppkm.SpeciesID;
-            if ((cbForm.Items.Count == 0) || !(
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Unown)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Castform)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Deoxys)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Burmy)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Wormadam)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Cherrim)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Shellos)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Gastrodon)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Rotom)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Giratina)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Shaymin)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Basculin)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Darmanitan)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Deerling)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Sawsbuck)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Tornadus)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Thundurus)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Landorus)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Kyurem)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Keldeo)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Meloetta)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Arceus)) ||
-                (speciesid == (UInt16)(PKMDS.PKMSpecies.Genesect))
-                ))
-            {
-                e.Value = -1;
-            }
-            if (Convert.ToInt32(e.Value) >= cbForm.Items.Count)
-            {
-                temppkm.FormID = Convert.ToByte(cbForm.Items.Count - 1);
-                controlsbinding.ResetBindings(false);
-            }
-        }
-        private void OTNameColorConvert(object bindingsource, ConvertEventArgs e)
-        {
-            if ((bool)(e.Value) == true)
-            {
-                e.Value = Color.Blue;
-            }
-            else
-            {
-                e.Value = Color.Red;
-            }
-        }
-        private void StatColorConvert(object bindingsource, ConvertEventArgs e)
-        {
-            switch ((PKMDS.NatureEffect)(e.Value))
-            {
-                case PKMDS.NatureEffect.Increase:
-                    e.Value = Color.Red;
-                    break;
-                case PKMDS.NatureEffect.Decrease:
-                    e.Value = Color.Blue;
-                    break;
-                case PKMDS.NatureEffect.NoEffect:
-                    e.Value = Color.Black;
-                    break;
-            }
-        }
-        private void MaxStatFormat(object bindingsource, ConvertEventArgs e)
-        {
-            Binding binding = ((Binding)(bindingsource));
-            Control control = binding.Control;
-            if (binding.BindingMemberInfo.BindingMember == "HPIV")
-            {
-                SetControlFont(ref control, temppkm.HPIV == 31);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "AttackIV")
-            {
-                SetControlFont(ref control, temppkm.AttackIV == 31);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "DefenseIV")
-            {
-                SetControlFont(ref control, temppkm.DefenseIV == 31);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "SpecialAttackIV")
-            {
-                SetControlFont(ref control, temppkm.SpecialAttackIV == 31);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "SpecialDefenseIV")
-            {
-                SetControlFont(ref control, temppkm.SpecialDefenseIV == 31);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "SpeedIV")
-            {
-                SetControlFont(ref control, temppkm.SpeedIV == 31);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "HPEV")
-            {
-                SetControlFont(ref control, temppkm.HPEV >= 252);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "AttackEV")
-            {
-                SetControlFont(ref control, temppkm.AttackEV >= 252);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "DefenseEV")
-            {
-                SetControlFont(ref control, temppkm.DefenseEV >= 252);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "SpecialAttackEV")
-            {
-                SetControlFont(ref control, temppkm.SpecialAttackEV >= 252);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "SpecialDefenseEV")
-            {
-                SetControlFont(ref control, temppkm.SpecialDefenseEV >= 252);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "SpeedEV")
-            {
-                SetControlFont(ref control, temppkm.SpeedEV >= 252);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "TotalEVs")
-            {
-                SetControlFont(ref control, temppkm.TotalEVs >= 510);
-            }
-            if (binding.BindingMemberInfo.BindingMember == "Tameness")
-            {
-                SetControlFont(ref control, temppkm.Tameness == 255);
-            }
-        }
+        //private void MoveEnabledFormat(object bindingsource, ConvertEventArgs e)
+        //{
+        //    Binding binding = ((Binding)(bindingsource));
+        //    if (binding.BindingMemberInfo.BindingMember == "Move2ID")
+        //    {
+        //        numMove2PP.Enabled = ((UInt16)(e.Value) != 0);
+        //        numMove2PPUps.Enabled = ((UInt16)(e.Value) != 0);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "Move3ID")
+        //    {
+        //        numMove3PP.Enabled = ((UInt16)(e.Value) != 0);
+        //        numMove3PPUps.Enabled = ((UInt16)(e.Value) != 0);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "Move4ID")
+        //    {
+        //        numMove4PP.Enabled = ((UInt16)(e.Value) != 0);
+        //        numMove4PPUps.Enabled = ((UInt16)(e.Value) != 0);
+        //    }
+        //}
+        //private void EggDateFormat(object bindingsource, ConvertEventArgs e)
+        //{
+        //    Binding binding = (Binding)(bindingsource);
+        //    if (Convert.ToDateTime(e.Value) == new DateTime(1, 1, 1))
+        //    {
+        //        //eggdatebindingsource.SuspendBinding();
+        //        e.Value = dtEggDate.MinDate;
+        //    }
+        //    else
+        //    {
+        //        //eggdatebindingsource.ResumeBinding();
+        //    }
+        //}
+        //private void FormConvert(object bindingsource, ConvertEventArgs e)
+        //{
+        //    UInt16 speciesid = temppkm.SpeciesID;
+        //    if ((cbForm.Items.Count == 0) || !(
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Unown)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Castform)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Deoxys)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Burmy)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Wormadam)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Cherrim)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Shellos)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Gastrodon)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Rotom)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Giratina)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Shaymin)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Basculin)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Darmanitan)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Deerling)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Sawsbuck)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Tornadus)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Thundurus)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Landorus)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Kyurem)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Keldeo)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Meloetta)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Arceus)) ||
+        //        (speciesid == (UInt16)(PKMDS.PKMSpecies.Genesect))
+        //        ))
+        //    {
+        //        e.Value = -1;
+        //    }
+        //    if (Convert.ToInt32(e.Value) >= cbForm.Items.Count)
+        //    {
+        //        temppkm.FormID = Convert.ToByte(cbForm.Items.Count - 1);
+        //        controlsbinding.ResetBindings(false);
+        //    }
+        //}
+        //private void OTNameColorConvert(object bindingsource, ConvertEventArgs e)
+        //{
+        //    if ((bool)(e.Value) == true)
+        //    {
+        //        e.Value = Color.Blue;
+        //    }
+        //    else
+        //    {
+        //        e.Value = Color.Red;
+        //    }
+        //}
+        //private void StatColorConvert(object bindingsource, ConvertEventArgs e)
+        //{
+        //    switch ((PKMDS.NatureEffect)(e.Value))
+        //    {
+        //        case PKMDS.NatureEffect.Increase:
+        //            e.Value = Color.Red;
+        //            break;
+        //        case PKMDS.NatureEffect.Decrease:
+        //            e.Value = Color.Blue;
+        //            break;
+        //        case PKMDS.NatureEffect.NoEffect:
+        //            e.Value = Color.Black;
+        //            break;
+        //    }
+        //}
+        //private void MaxStatFormat(object bindingsource, ConvertEventArgs e)
+        //{
+        //    Binding binding = ((Binding)(bindingsource));
+        //    Control control = binding.Control;
+        //    if (binding.BindingMemberInfo.BindingMember == "HPIV")
+        //    {
+        //        SetControlFont(ref control, temppkm.HPIV == 31);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "AttackIV")
+        //    {
+        //        SetControlFont(ref control, temppkm.AttackIV == 31);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "DefenseIV")
+        //    {
+        //        SetControlFont(ref control, temppkm.DefenseIV == 31);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "SpecialAttackIV")
+        //    {
+        //        SetControlFont(ref control, temppkm.SpecialAttackIV == 31);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "SpecialDefenseIV")
+        //    {
+        //        SetControlFont(ref control, temppkm.SpecialDefenseIV == 31);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "SpeedIV")
+        //    {
+        //        SetControlFont(ref control, temppkm.SpeedIV == 31);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "HPEV")
+        //    {
+        //        SetControlFont(ref control, temppkm.HPEV >= 252);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "AttackEV")
+        //    {
+        //        SetControlFont(ref control, temppkm.AttackEV >= 252);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "DefenseEV")
+        //    {
+        //        SetControlFont(ref control, temppkm.DefenseEV >= 252);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "SpecialAttackEV")
+        //    {
+        //        SetControlFont(ref control, temppkm.SpecialAttackEV >= 252);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "SpecialDefenseEV")
+        //    {
+        //        SetControlFont(ref control, temppkm.SpecialDefenseEV >= 252);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "SpeedEV")
+        //    {
+        //        SetControlFont(ref control, temppkm.SpeedEV >= 252);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "TotalEVs")
+        //    {
+        //        SetControlFont(ref control, temppkm.TotalEVs >= 510);
+        //    }
+        //    if (binding.BindingMemberInfo.BindingMember == "Tameness")
+        //    {
+        //        SetControlFont(ref control, temppkm.Tameness == 255);
+        //    }
+        //}
         private void SetNicknamedFlag(object bindingsource, ConvertEventArgs e)
         {
             Binding bs = (Binding)(bindingsource);
@@ -376,17 +403,17 @@ lblMove3Flavor.DataBindings.Add();
                     break;
             }
         }
-        private void SetControlFont(ref Control control, bool bold = false)
-        {
-            if (bold)
-            {
-                control.Font = new Font(control.Font, FontStyle.Bold);
-            }
-            else
-            {
-                control.Font = new Font(control.Font, FontStyle.Regular);
-            }
-        }
+        //private void SetControlFont(ref Control control, bool bold = false)
+        //{
+        //    if (bold)
+        //    {
+        //        control.Font = new Font(control.Font, FontStyle.Bold);
+        //    }
+        //    else
+        //    {
+        //        control.Font = new Font(control.Font, FontStyle.Regular);
+        //    }
+        //}
         private void SetUI()
         {
             SetItems();
@@ -442,7 +469,7 @@ lblMove3Flavor.DataBindings.Add();
                         {
                             temppkm.FormID = (byte)(cbForm.Items.Count - 1);
                         }
-                        formsbindingsource.ResetBindings(false);
+                        //formsbindingsource.ResetBindings(false);
                     }
                     else
                     {
@@ -596,14 +623,12 @@ lblMove3Flavor.DataBindings.Add();
             for (UInt16 moveindex = 0; moveindex <= 559; moveindex++)
             {
                 move = new PKMDS.Move(moveindex);
-                if ((move.MoveName != "") & (move.MoveName != null) & (move.MoveID != 0))
-                {
-                    moves1.Add(move);
-                }
-                moves2.Add(move);
-                moves3.Add(move);
                 moves4.Add(move);
             }
+            moves1.AddRange(moves4);
+            moves1.RemoveAt(0);
+            moves2.AddRange(moves4);
+            moves3.AddRange(moves4);
             cbMove1.DataSource = moves1;
             cbMove1.DisplayMember = "MoveName";
             cbMove1.ValueMember = "MoveID";
@@ -667,24 +692,33 @@ lblMove3Flavor.DataBindings.Add();
             pkm = pokemon;
             temppkm.Data = pkm.Data;
             SetForms();
-            controlsbinding.ResetBindings(false);
+            resetbindings();
+            //controlsbinding.ResetBindings(false);
         }
         public void SetPKM(PKMDS.PartyPokemon pokemon)
         {
             pkm = pokemon.PokemonData;
             temppkm.Data = pkm.Data;
             SetForms();
-            controlsbinding.ResetBindings(false);
+            resetbindings();
+            //controlsbinding.ResetBindings(false);
         }
         private void SavePKM()
         {
+            if (!(temppkm.MetAsEgg))
+            {
+                temppkm.SetNoEggDate();
+                temppkm.EggLocationID = 0;
+            }
             temppkm.FixChecksum();
             pkm.Data = temppkm.Data;
-            controlsbinding.ResetBindings(false);
+            resetbindings();
+            //controlsbinding.ResetBindings(false);
         }
         private void frmPKMViewer_Load(object sender, EventArgs e)
         {
-
+            //controlsbinding.CancelEdit();
+            //controlsbinding.EndEdit();
         }
         private void btnApply_Click(object sender, EventArgs e)
         {
@@ -753,6 +787,13 @@ lblMove3Flavor.DataBindings.Add();
             {
                 e.Cancel = (MessageBox.Show("If you close this window you will lose unsaved changes. Close this window anyway?", "Unsaved Changes", MessageBoxButtons.YesNo, MessageBoxIcon.Warning) == System.Windows.Forms.DialogResult.No);
             }
+        }
+        private void resetbindings()
+        {
+            controlsbinding.ResetBindings(false);
+            //formsbindingsource.ResetBindings(false);
+            //eggdatebindingsource.ResetBindings(false);
+            //movesbindingsource.ResetBindings(false);
         }
     }
 }

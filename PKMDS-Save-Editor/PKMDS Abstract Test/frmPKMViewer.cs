@@ -43,6 +43,7 @@ namespace PKMDS_Abstract_Test
         Binding maxspeedevbinding;
         Binding maxtamenessbinding;
         Binding maxtotalevbinding;
+        Binding datebinding;
         Binding eggdatebinding;
         Binding move2binding;
         Binding move3binding;
@@ -114,9 +115,9 @@ namespace PKMDS_Abstract_Test
             lblCharacteristic.DataBindings.Add("Text", controlsbinding, "Characteristic", false, DataSourceUpdateMode.Never, "");
             maxtamenessbinding = numTameness.DataBindings.Add("Value", controlsbinding, "Tameness", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             cbMove1.DataBindings.Add("SelectedValue", controlsbinding, "Move1ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbMove2.DataBindings.Add("SelectedValue", controlsbinding, "Move2ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbMove3.DataBindings.Add("SelectedValue", controlsbinding, "Move3ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            cbMove4.DataBindings.Add("SelectedValue", controlsbinding, "Move4ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            move2binding = cbMove2.DataBindings.Add("SelectedValue", controlsbinding, "Move2ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            move3binding = cbMove3.DataBindings.Add("SelectedValue", controlsbinding, "Move3ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            move4binding = cbMove4.DataBindings.Add("SelectedValue", controlsbinding, "Move4ID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
             numMove1PP.DataBindings.Add("Value", controlsbinding, "Move1PP", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             numMove1PPUps.DataBindings.Add("Value", controlsbinding, "Move1PPUps", false, DataSourceUpdateMode.OnPropertyChanged, 0);
             numMove2PP.DataBindings.Add("Value", controlsbinding, "Move2PP", false, DataSourceUpdateMode.OnPropertyChanged, 0);
@@ -148,36 +149,36 @@ namespace PKMDS_Abstract_Test
             txtCalcSpDef.DataBindings.Add("Text", controlsbinding, "CalculatedSpecialDefense", true, DataSourceUpdateMode.Never, "");
             txtCalcSpeed.DataBindings.Add("Text", controlsbinding, "CalculatedSpeed", true, DataSourceUpdateMode.Never, "");
             maxtotalevbinding = txtTotalEVs.DataBindings.Add("Text", controlsbinding, "TotalEVs", true, DataSourceUpdateMode.Never, "0");
-            //maxtamenessbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxhpivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxspatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxspdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxspeedivbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxhpevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxspatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxspdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxspeedevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //maxtotalevbinding.Format += new ConvertEventHandler(MaxStatFormat);
-            //cbIsEgg.DataBindings.Add("Checked", controlsbinding, "IsEgg", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            //cbFateful.DataBindings.Add("Checked", controlsbinding, "IsFateful", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            //cbNsPokemon.DataBindings.Add("Checked", controlsbinding, "IsNsPokemon", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            //cbMetAsEgg.DataBindings.Add("Checked", controlsbinding, "MetAsEgg", false, DataSourceUpdateMode.OnPropertyChanged, false);
-            //cbPKRSStrain.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusStrain", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            //cbPKRSDays.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusDays", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            //cbEggLocation.DataBindings.Add("SelectedValue", controlsbinding, "EggLocationID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            //cbMetLocation.DataBindings.Add("SelectedValue", controlsbinding, "MetLocationID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            //dtMetDate.DataBindings.Add("Value", controlsbinding, "MetDate", false, DataSourceUpdateMode.OnPropertyChanged, dtMetDate.MinDate);
+            numMetLevel.DataBindings.Add("Value", controlsbinding, "MetLevel", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            cbCountry.DataBindings.Add("SelectedValue", controlsbinding, "LanguageID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            cbGame.DataBindings.Add("SelectedValue", controlsbinding, "HometownID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            cbFateful.DataBindings.Add("Checked", controlsbinding, "IsFateful", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            cbNsPokemon.DataBindings.Add("Checked", controlsbinding, "IsNsPokemon", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            cbIsEgg.DataBindings.Add("Checked", controlsbinding, "IsEgg", false, DataSourceUpdateMode.OnPropertyChanged, false);
+            cbPKRSStrain.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusStrain", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            cbPKRSDays.DataBindings.Add("SelectedIndex", controlsbinding, "PokerusDays", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            maxtamenessbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxhpivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxspatkivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxspdefivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxspeedivbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxhpevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxspatkevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxspdefevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxspeedevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            maxtotalevbinding.Format += new ConvertEventHandler(MaxStatFormat);
+            cbMetLocation.DataBindings.Add("SelectedValue", controlsbinding, "MetLocationID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            cbEggLocation.DataBindings.Add("SelectedValue", controlsbinding, "EggLocationID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
+            cbMetAsEgg.DataBindings.Add("Checked", controlsbinding, "MetAsEgg", false, DataSourceUpdateMode.OnPropertyChanged, false);
 
-            ////eggdatebinding = dtEggDate.DataBindings.Add("Value", eggdatebindingsource, "EggDate", false, DataSourceUpdateMode.OnPropertyChanged, new DateTime(1, 1, 1));
-            ////eggdatebinding.Format += new ConvertEventHandler(EggDateFormat);
-
-            //numMetLevel.DataBindings.Add("Value", controlsbinding, "MetLevel", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            //cbCountry.DataBindings.Add("SelectedValue", controlsbinding, "LanguageID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
-            //cbGame.DataBindings.Add("SelectedValue", controlsbinding, "HometownID", false, DataSourceUpdateMode.OnPropertyChanged, -1);
+            //datebinding = dtMetDate.DataBindings.Add("Value", controlsbinding, "MetDate", false, DataSourceUpdateMode.OnValidation, dtMetDate.MinDate);
+            //eggdatebinding = dtEggDate.DataBindings.Add("Value", controlsbinding, "EggDate", false, DataSourceUpdateMode.OnValidation, dtEggDate.MinDate);
+            //datebinding.Format += new ConvertEventHandler(DateFormat);
+            //eggdatebinding.Format += new ConvertEventHandler(DateFormat);
 
             /*
 pbTNL.DataBindings.Add();
@@ -304,38 +305,38 @@ lblForm.DataBindings.Add();
              */
             // TODO: finish data bindings
         }
-        //private void MoveEnabledFormat(object bindingsource, ConvertEventArgs e)
-        //{
-        //    Binding binding = ((Binding)(bindingsource));
-        //    if (binding.BindingMemberInfo.BindingMember == "Move2ID")
-        //    {
-        //        numMove2PP.Enabled = ((UInt16)(e.Value) != 0);
-        //        numMove2PPUps.Enabled = ((UInt16)(e.Value) != 0);
-        //    }
-        //    if (binding.BindingMemberInfo.BindingMember == "Move3ID")
-        //    {
-        //        numMove3PP.Enabled = ((UInt16)(e.Value) != 0);
-        //        numMove3PPUps.Enabled = ((UInt16)(e.Value) != 0);
-        //    }
-        //    if (binding.BindingMemberInfo.BindingMember == "Move4ID")
-        //    {
-        //        numMove4PP.Enabled = ((UInt16)(e.Value) != 0);
-        //        numMove4PPUps.Enabled = ((UInt16)(e.Value) != 0);
-        //    }
-        //}
-        //private void EggDateFormat(object bindingsource, ConvertEventArgs e)
-        //{
-        //    Binding binding = (Binding)(bindingsource);
-        //    if (Convert.ToDateTime(e.Value) == new DateTime(1, 1, 1))
-        //    {
-        //        //eggdatebindingsource.SuspendBinding();
-        //        e.Value = dtEggDate.MinDate;
-        //    }
-        //    else
-        //    {
-        //        //eggdatebindingsource.ResumeBinding();
-        //    }
-        //}
+        private void MoveEnabledFormat(object bindingsource, ConvertEventArgs e)
+        {
+            Binding binding = ((Binding)(bindingsource));
+            if (binding.BindingMemberInfo.BindingMember == "Move2ID")
+            {
+                numMove2PP.Enabled = ((UInt16)(e.Value) != 0);
+                numMove2PPUps.Enabled = ((UInt16)(e.Value) != 0);
+            }
+            if (binding.BindingMemberInfo.BindingMember == "Move3ID")
+            {
+                numMove3PP.Enabled = ((UInt16)(e.Value) != 0);
+                numMove3PPUps.Enabled = ((UInt16)(e.Value) != 0);
+            }
+            if (binding.BindingMemberInfo.BindingMember == "Move4ID")
+            {
+                numMove4PP.Enabled = ((UInt16)(e.Value) != 0);
+                numMove4PPUps.Enabled = ((UInt16)(e.Value) != 0);
+            }
+        }
+        private void DateFormat(object bindingsource, ConvertEventArgs e)
+        {
+            Binding binding = (Binding)(bindingsource);
+            if (Convert.ToDateTime(e.Value) == new DateTime(1, 1, 1))
+            {
+                //datebindingsource.SuspendBinding();
+                e.Value = dtEggDate.MinDate;
+            }
+            else
+            {
+                //datebindingsource.ResumeBinding();
+            }
+        }
         private void FormConvert(object bindingsource, ConvertEventArgs e)
         {
             UInt16 speciesid = temppkm.SpeciesID;

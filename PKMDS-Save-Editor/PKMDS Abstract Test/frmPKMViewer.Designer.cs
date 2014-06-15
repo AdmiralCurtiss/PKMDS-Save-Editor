@@ -30,7 +30,6 @@
         {
             this.tlMain = new System.Windows.Forms.TableLayoutPanel();
             this.tlButtons = new System.Windows.Forms.TableLayoutPanel();
-            this.btnApply = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnExport = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
@@ -210,6 +209,7 @@
             this.tpRibbon = new System.Windows.Forms.TabPage();
             this.tpMisc = new System.Windows.Forms.TabPage();
             this.fileSave = new System.Windows.Forms.SaveFileDialog();
+            this.btnRevert = new System.Windows.Forms.Button();
             this.tlMain.SuspendLayout();
             this.tlButtons.SuspendLayout();
             this.tlControls.SuspendLayout();
@@ -321,7 +321,7 @@
             this.tlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
             this.tlButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tlButtons.Controls.Add(this.btnApply, 0, 0);
+            this.tlButtons.Controls.Add(this.btnRevert, 0, 0);
             this.tlButtons.Controls.Add(this.btnClose, 3, 0);
             this.tlButtons.Controls.Add(this.btnExport, 2, 0);
             this.tlButtons.Controls.Add(this.btnSave, 1, 0);
@@ -332,18 +332,6 @@
             this.tlButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
             this.tlButtons.Size = new System.Drawing.Size(585, 32);
             this.tlButtons.TabIndex = 1;
-            // 
-            // btnApply
-            // 
-            this.btnApply.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnApply.Enabled = false;
-            this.btnApply.Location = new System.Drawing.Point(35, 4);
-            this.btnApply.Name = "btnApply";
-            this.btnApply.Size = new System.Drawing.Size(75, 23);
-            this.btnApply.TabIndex = 0;
-            this.btnApply.Text = "Apply";
-            this.btnApply.UseVisualStyleBackColor = true;
-            this.btnApply.Click += new System.EventHandler(this.btnApply_Click);
             // 
             // btnClose
             // 
@@ -455,6 +443,8 @@
             // 
             this.cbBall.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbBall.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbBall.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbBall.FormattingEnabled = true;
             this.cbBall.Location = new System.Drawing.Point(103, 43);
             this.cbBall.Margin = new System.Windows.Forms.Padding(0);
@@ -516,6 +506,8 @@
             // 
             this.cbForm.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbForm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbForm.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbForm.Enabled = false;
             this.cbForm.FormattingEnabled = true;
             this.cbForm.Location = new System.Drawing.Point(3, 154);
@@ -527,6 +519,8 @@
             // 
             this.cbSpecies.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbSpecies.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbSpecies.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbSpecies.FormattingEnabled = true;
             this.cbSpecies.Location = new System.Drawing.Point(3, 112);
             this.cbSpecies.Name = "cbSpecies";
@@ -547,6 +541,8 @@
             // 
             this.cbHeldItem.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbHeldItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbHeldItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbHeldItem.FormattingEnabled = true;
             this.cbHeldItem.Location = new System.Drawing.Point(39, 240);
             this.cbHeldItem.Name = "cbHeldItem";
@@ -718,11 +714,11 @@
             // 
             // txtTNLPercent
             // 
-            this.txtTNLPercent.Location = new System.Drawing.Point(341, 195);
+            this.txtTNLPercent.Location = new System.Drawing.Point(334, 195);
             this.txtTNLPercent.Multiline = true;
             this.txtTNLPercent.Name = "txtTNLPercent";
             this.txtTNLPercent.ReadOnly = true;
-            this.txtTNLPercent.Size = new System.Drawing.Size(34, 23);
+            this.txtTNLPercent.Size = new System.Drawing.Size(47, 23);
             this.txtTNLPercent.TabIndex = 13;
             this.txtTNLPercent.TabStop = false;
             this.txtTNLPercent.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -749,7 +745,7 @@
             // 
             this.pbTNL.Location = new System.Drawing.Point(6, 195);
             this.pbTNL.Name = "pbTNL";
-            this.pbTNL.Size = new System.Drawing.Size(329, 23);
+            this.pbTNL.Size = new System.Drawing.Size(322, 23);
             this.pbTNL.TabIndex = 12;
             // 
             // lblTNL
@@ -787,6 +783,8 @@
             // 
             this.cbAbility.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbAbility.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbAbility.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbAbility.FormattingEnabled = true;
             this.cbAbility.Location = new System.Drawing.Point(199, 90);
             this.cbAbility.Name = "cbAbility";
@@ -1068,6 +1066,8 @@
             // 
             this.cbNature.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbNature.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbNature.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbNature.FormattingEnabled = true;
             this.cbNature.Location = new System.Drawing.Point(6, 193);
             this.cbNature.Name = "cbNature";
@@ -1636,12 +1636,15 @@
             // cbMove4
             // 
             this.cbMove4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove4.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove4.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove4.FormattingEnabled = true;
             this.cbMove4.Location = new System.Drawing.Point(0, 4);
             this.cbMove4.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove4.Name = "cbMove4";
             this.cbMove4.Size = new System.Drawing.Size(153, 21);
             this.cbMove4.TabIndex = 0;
+            this.cbMove4.SelectedIndexChanged += new System.EventHandler(this.cbMove_SelectedIndexChanged);
             // 
             // txtMove4MaxPP
             // 
@@ -1882,12 +1885,15 @@
             // cbMove1
             // 
             this.cbMove1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove1.FormattingEnabled = true;
             this.cbMove1.Location = new System.Drawing.Point(0, 4);
             this.cbMove1.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove1.Name = "cbMove1";
             this.cbMove1.Size = new System.Drawing.Size(153, 21);
             this.cbMove1.TabIndex = 0;
+            this.cbMove1.SelectedIndexChanged += new System.EventHandler(this.cbMove_SelectedIndexChanged);
             // 
             // txtMove1MaxPP
             // 
@@ -2043,12 +2049,15 @@
             // cbMove2
             // 
             this.cbMove2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove2.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove2.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove2.FormattingEnabled = true;
             this.cbMove2.Location = new System.Drawing.Point(0, 4);
             this.cbMove2.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove2.Name = "cbMove2";
             this.cbMove2.Size = new System.Drawing.Size(153, 21);
             this.cbMove2.TabIndex = 0;
+            this.cbMove2.SelectedIndexChanged += new System.EventHandler(this.cbMove_SelectedIndexChanged);
             // 
             // txtMove2MaxPP
             // 
@@ -2206,12 +2215,15 @@
             // cbMove3
             // 
             this.cbMove3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbMove3.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMove3.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMove3.FormattingEnabled = true;
             this.cbMove3.Location = new System.Drawing.Point(0, 4);
             this.cbMove3.Margin = new System.Windows.Forms.Padding(0);
             this.cbMove3.Name = "cbMove3";
             this.cbMove3.Size = new System.Drawing.Size(153, 21);
             this.cbMove3.TabIndex = 0;
+            this.cbMove3.SelectedIndexChanged += new System.EventHandler(this.cbMove_SelectedIndexChanged);
             // 
             // txtMove3MaxPP
             // 
@@ -2366,11 +2378,14 @@
             this.cbIsEgg.TabIndex = 8;
             this.cbIsEgg.Text = "Is Egg";
             this.cbIsEgg.UseVisualStyleBackColor = true;
+            this.cbIsEgg.CheckedChanged += new System.EventHandler(this.cbIsEgg_CheckedChanged);
             // 
             // cbCountry
             // 
             this.cbCountry.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbCountry.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbCountry.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbCountry.FormattingEnabled = true;
             this.cbCountry.Location = new System.Drawing.Point(55, 146);
             this.cbCountry.Name = "cbCountry";
@@ -2390,6 +2405,8 @@
             // 
             this.cbGame.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.cbGame.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbGame.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbGame.FormattingEnabled = true;
             this.cbGame.Location = new System.Drawing.Point(55, 119);
             this.cbGame.Name = "cbGame";
@@ -2451,6 +2468,8 @@
             // 
             // cbEggLocation
             // 
+            this.cbEggLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbEggLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbEggLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbEggLocation.Enabled = false;
             this.cbEggLocation.FormattingEnabled = true;
@@ -2481,6 +2500,7 @@
             this.cbMetAsEgg.TabIndex = 2;
             this.cbMetAsEgg.Text = "Met as egg";
             this.cbMetAsEgg.UseVisualStyleBackColor = true;
+            this.cbMetAsEgg.CheckedChanged += new System.EventHandler(this.cbMetAsEgg_CheckedChanged);
             // 
             // gbMet
             // 
@@ -2509,6 +2529,8 @@
             // 
             // cbMetLocation
             // 
+            this.cbMetLocation.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbMetLocation.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cbMetLocation.Dock = System.Windows.Forms.DockStyle.Fill;
             this.cbMetLocation.FormattingEnabled = true;
             this.cbMetLocation.Location = new System.Drawing.Point(3, 3);
@@ -2551,6 +2573,18 @@
             // fileSave
             // 
             this.fileSave.Filter = "PK5 files|*.pk5|EK5 files|*.ek5|PKM files|*.pkm|All files|*.*";
+            // 
+            // btnRevert
+            // 
+            this.btnRevert.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnRevert.Enabled = false;
+            this.btnRevert.Location = new System.Drawing.Point(35, 4);
+            this.btnRevert.Name = "btnRevert";
+            this.btnRevert.Size = new System.Drawing.Size(75, 23);
+            this.btnRevert.TabIndex = 4;
+            this.btnRevert.Text = "Revert";
+            this.btnRevert.UseVisualStyleBackColor = true;
+            this.btnRevert.Click += new System.EventHandler(this.btnRevert_Click);
             // 
             // frmPKMViewer
             // 
@@ -2672,7 +2706,6 @@
         private System.Windows.Forms.TableLayoutPanel tlButtons;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnSave;
-        private System.Windows.Forms.Button btnApply;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.SaveFileDialog fileSave;
         private System.Windows.Forms.TableLayoutPanel tlControls;
@@ -2851,5 +2884,6 @@
         private System.Windows.Forms.ComboBox cbPKRSDays;
         private System.Windows.Forms.Label lblForm;
         #endregion
+        private System.Windows.Forms.Button btnRevert;
     }
 }

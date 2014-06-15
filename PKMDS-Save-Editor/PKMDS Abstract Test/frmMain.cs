@@ -19,6 +19,7 @@ namespace PKMDS_Abstract_Test
         PKMDS.Save sav;
         PKMDS.PCStorage pcstorage = new PKMDS.PCStorage();
         PKMDS.Box currentbox = new PKMDS.Box();
+        PKMDS.Party party = new PKMDS.Party();
         frmBoxes BoxesForm = new frmBoxes();
         BindingSource controlsbinding = new BindingSource();
         string filename = "Test-Save-White-2.sav";
@@ -27,11 +28,17 @@ namespace PKMDS_Abstract_Test
             sav = new PKMDS.Save(filename);
             pcstorage = sav.PCStorage;
             currentbox = pcstorage[0];
+            party = sav.Party;
             controlsbinding.DataSource = currentbox[0];
             numSpeciesID.DataBindings.Add("Value", controlsbinding, "SpeciesID", false, DataSourceUpdateMode.OnPropertyChanged, 0);
-            //pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
-            //pbIcon.DataBindings.Add("Image", controlsbinding, "Icon", true, DataSourceUpdateMode.Never, null);
+            pbSprite.DataBindings.Add("Image", controlsbinding, "Sprite", true, DataSourceUpdateMode.Never, null);
+            pbIcon.DataBindings.Add("Image", controlsbinding, "Icon", true, DataSourceUpdateMode.Never, null);
             numSpeciesID.Minimum = 1;
+
+            //PKMDS.SQL.OpenDB(Properties.Settings.Default.veekunpokedex);
+
+            //party.Select(myClass => party[0].PokemonData);
+            //dgData.DataSource = party.Select(t => t.PokemonData).ToList();
         }
         private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
         {

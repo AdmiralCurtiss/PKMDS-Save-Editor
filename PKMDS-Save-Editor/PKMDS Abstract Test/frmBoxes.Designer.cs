@@ -550,7 +550,7 @@
             // 
             // pnlParty
             // 
-            this.pnlParty.BackColor = System.Drawing.Color.Transparent;
+            this.pnlParty.BackColor = System.Drawing.SystemColors.Control;
             this.pnlParty.Controls.Add(this.tlParty);
             this.pnlParty.Location = new System.Drawing.Point(0, 0);
             this.pnlParty.Margin = new System.Windows.Forms.Padding(0);

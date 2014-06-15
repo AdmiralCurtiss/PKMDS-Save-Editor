@@ -11,6 +11,13 @@ namespace PKMDS_Abstract_Test
 {
     public partial class frmBoxes : Form
     {
+        BindingSource partyslotsbinding = new BindingSource();
+        //List<BindingSource> boxslotsbinding = new List<BindingSource>();
+        //List<BindingSource> boxgridsbinding = new List<BindingSource>();
+        //List<BindingSource> boxnamesbinding = new List<BindingSource>();
+        BindingSource boxslotsbinding = new BindingSource();
+        BindingSource boxgridsbinding = new BindingSource();
+        BindingSource boxnamesbinding = new BindingSource();
         PKMDS.Pokemon nullpkm = new PKMDS.Pokemon();
         public void SetSave(PKMDS.Save save)
         {
@@ -22,49 +29,61 @@ namespace PKMDS_Abstract_Test
             this.currentbox = this.pcstorage[this.sav.CurrentBox];
             if (partyPics[0].DataBindings.Count > 0)
             {
-                partyslotsbinding[0].ResetBindings(false);
+                partyslotsbinding.ResetBindings(false);
             }
             else
             {
+                partyslotsbinding.DataSource = party.Select(t => t.PokemonData).ToList();
                 for (int i = 0; i < 6; i++)
                 {
-                    partyslotsbinding.Add(new BindingSource());
-                    partyslotsbinding[i].DataSource = this.party[i].PokemonData;
                     partyPics[i].DataBindings.Add("Image", partyslotsbinding[i], "Icon", true, DataSourceUpdateMode.Never, null);
                 }
             }
+            boxslotsbinding.DataSource = currentbox.Select(t => t).ToList();
             for (int i = 0; i < 30; i++)
             {
                 if (boxPics[i].DataBindings.Count > 0)
                 {
-                    boxslotsbinding[i].ResetBindings(false);
+                    //boxslotsbinding[i].ResetBindings(false);
+                    boxPics[i].DataBindings[0].ReadValue();
                 }
                 else
                 {
-                    boxslotsbinding.Add(new BindingSource());
-                    boxslotsbinding[i].DataSource = currentbox[i];
+                    //boxslotsbinding.Add(new BindingSource());
+                    //boxslotsbinding[i].DataSource = currentbox[i];
                     boxPics[i].DataBindings.Add("Image", boxslotsbinding[i], "Icon", true, DataSourceUpdateMode.Never, null);
                 }
             }
-            if (boxGridPics[0].DataBindings.Count > 0)
+
+            //List<PKMDS.Box> boxestest = pcstorage.Select(t => t).ToList();
+            //boxGridPics[0].BringToFront();
+            //boxGridPics[0].Image = boxestest[0].Grid;
+
+            boxgridsbinding.DataSource = pcstorage.Select(t => t).ToList();
+
+            boxnamesbinding.DataSource = boxnames;
+            for (int i = 0; i < 24; i++)
             {
-                for (int i = 0; i < 24; i++)
+                if (boxGridPics[i].DataBindings.Count > 0)
                 {
-                    boxgridsbinding[i].ResetBindings(false);
-                    boxnamesbinding[i].ResetBindings(false);
+                    //for (int i = 0; i < 24; i++)
+                    //{
+                    //    boxgridsbinding[i].ResetBindings(false);
+                    //    boxnamesbinding[i].ResetBindings(false);
+                    //}
+                    boxGridPics[i].DataBindings[0].ReadValue();
+                    boxNameLabels[i].DataBindings[0].ReadValue();
                 }
-            }
-            else
-            {
-                for (int i = 0; i < 24; i++)
+                else
                 {
-                    boxgridsbinding.Add(new BindingSource());
-                    boxgridsbinding[i].DataSource = pcstorage;
-                    boxgridsbinding[i].Position += i;
-                    boxGridPics[i].DataBindings.Add("Image", boxgridsbinding[i], "Grid", true, DataSourceUpdateMode.Never, null);
-                    boxnamesbinding.Add(new BindingSource());
-                    boxnamesbinding[i].DataSource = boxnames;
-                    boxnamesbinding[i].Position += i;
+                    //boxgridsbinding.Add(new BindingSource());
+                    //boxgridsbinding[i].DataSource = pcstorage;
+                    //boxgridsbinding[i].Position += i;
+                    boxGridPics[i].DataBindings.Add("Image", boxgridsbinding/*[i]*/, "Grid", true, DataSourceUpdateMode.Never, null);
+                    //boxnamesbinding.Add(new BindingSource());
+                    //boxnamesbinding[i].DataSource = boxnames;
+                    //boxnamesbinding[i].Position += i;
+
                     boxNameLabels[i].DataBindings.Add("Text", boxnamesbinding[i], "Name", false, DataSourceUpdateMode.Never, "");
                 }
             }
@@ -250,17 +269,12 @@ namespace PKMDS_Abstract_Test
         private List<Label> boxNameLabels = new List<Label>();
         private List<Label> boxcountLabels = new List<Label>();
         private List<Panel> boxPanels = new List<Panel>();
-        frmPKMViewer pkmview = new frmPKMViewer();
         PKMDS.Save sav;
         PKMDS.Party party = new PKMDS.Party();
         PKMDS.PCStorage pcstorage = new PKMDS.PCStorage();
         PKMDS.Box currentbox = new PKMDS.Box();
         PKMDS.BoxNames boxnames = new PKMDS.BoxNames();
         PKMDS.BoxWallpapers boxwallpapers = new PKMDS.BoxWallpapers();
-        List<BindingSource> partyslotsbinding = new List<BindingSource>();
-        List<BindingSource> boxslotsbinding = new List<BindingSource>();
-        List<BindingSource> boxgridsbinding = new List<BindingSource>();
-        List<BindingSource> boxnamesbinding = new List<BindingSource>();
         BindingSource boxnamebinding = new BindingSource();
         BindingSource boxwallpaperbinding = new BindingSource();
         Color SelectionColor = Color.FromArgb(100, Color.Orange.R, Color.Orange.G, Color.Orange.B);
@@ -281,10 +295,14 @@ namespace PKMDS_Abstract_Test
             PKMDS.Pokemon pkm = currentbox[slot];
             if (pkm.SpeciesID != 0)
             {
-                pkmview.SetPKM(pkm);
-                pkmview.ShowDialog();
-                boxslotsbinding[slot].ResetBindings(false);
-                boxgridsbinding[this.sav.CurrentBox].ResetBindings(false);
+                using (frmPKMViewer pkmview = new frmPKMViewer())
+                {
+                    pkmview.SetPKM(pkm);
+                    pkmview.PreloadTabs();
+                    pkmview.ShowDialog();
+                    boxPics[slot].DataBindings[0].ReadValue();
+                    boxGridPics[this.sav.CurrentBox].DataBindings[0].ReadValue();
+                }
             }
         }
         private void pbPartySlot_DoubleClick(object sender, EventArgs e)
@@ -296,10 +314,14 @@ namespace PKMDS_Abstract_Test
             PKMDS.PartyPokemon ppkm = party[slot];
             if (ppkm.PokemonData.SpeciesID != 0)
             {
-                pkmview.SetPKM(ppkm);
-                pkmview.ShowDialog();
-                party.RecalculateParty();
-                partyslotsbinding[slot].ResetBindings(false);
+                using (frmPKMViewer pkmview = new frmPKMViewer())
+                {
+                    pkmview.SetPKM(ppkm);
+                    pkmview.PreloadTabs();
+                    pkmview.ShowDialog();
+                    party.RecalculateParty();
+                    partyPics[slot].DataBindings[0].ReadValue();
+                }
             }
         }
         private void btnPreviousBox_Click(object sender, EventArgs e)
@@ -323,8 +345,9 @@ namespace PKMDS_Abstract_Test
             this.currentbox = this.pcstorage[this.sav.CurrentBox];
             for (int i = 0; i < 30; i++)
             {
-                boxslotsbinding[i].ResetBindings(false);
-                boxslotsbinding[i].DataSource = currentbox[i];
+
+                //boxslotsbinding[i].ResetBindings(false);
+                //boxslotsbinding[i].DataSource = currentbox[i];
             }
             boxnamebinding.DataSource = boxnames[this.sav.CurrentBox];
             boxnamebinding.ResetBindings(false);
@@ -375,10 +398,15 @@ namespace PKMDS_Abstract_Test
             Control pb = (Control)(sender);
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out box);
             box--;
-            boxPanels[box].BackColor = Color.Transparent;
+            boxPanels[box].BackColor = System.Drawing.SystemColors.Control;
         }
         private void frmBoxes_Shown(object sender, EventArgs e)
         {
+            for (int i = 0; i < 24; i++)
+            {
+                //boxGridPics[i].DataBindings[0].ReadValue();
+                //boxgridsbinding[i].ResetBindings(false);
+            }
             splitMain.Panel2.ScrollControlIntoView(boxNameLabels[sav.CurrentBox]);
             splitMain.Panel2.ScrollControlIntoView(boxGridPics[sav.CurrentBox]);
         }
@@ -397,7 +425,7 @@ namespace PKMDS_Abstract_Test
             Control pb = (Control)(sender);
             int.TryParse(pb.Name.Substring(pb.Name.Length - 2, 2), out slot);
             slot--;
-            partyPics[slot].BackColor = Color.Transparent;
+            partyPics[slot].BackColor = SystemColors.Control;
             ClearPreview();
         }
         private void pbPartySlot_MouseDown(object sender, MouseEventArgs e)

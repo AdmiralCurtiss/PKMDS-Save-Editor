@@ -230,12 +230,15 @@ namespace PKMDS_Save_Editor
             int summedIV = pkm.HPIV + pkm.AttackIV + pkm.DefenseIV + pkm.SpecialAttackIV + pkm.SpecialDefenseIV + pkm.SpeedIV;
             item = new ListViewItem.ListViewSubItem(lvm, summedIV.ToString());
             item.Tag = ColumnType.IVTotal;
+            if (summedIV >= 186) { item.Font = new Font(item.Font, FontStyle.Bold); }
             lvm.SubItems.Add(item);
 
             for (int i = 0; i < stats.Length; ++i)
             {
-                item = new ListViewItem.ListViewSubItem(lvm, pkm.GetIV(i).ToString());
+                int iv = pkm.GetIV(i);
+                item = new ListViewItem.ListViewSubItem(lvm, iv.ToString());
                 item.Tag = (ColumnType)(ColumnType.IVHP + i);
+                if (iv >= 31) { item.Font = new Font(item.Font, FontStyle.Bold); }
                 lvm.SubItems.Add(item);
             }
 
@@ -243,12 +246,15 @@ namespace PKMDS_Save_Editor
             int summedEV = pkm.HPEV + pkm.AttackEV + pkm.DefenseEV + pkm.SpecialAttackEV + pkm.SpecialDefenseEV + pkm.SpeedEV;
             item = new ListViewItem.ListViewSubItem(lvm, summedEV.ToString());
             item.Tag = ColumnType.EVTotal;
+            if (summedEV >= 510) { item.Font = new Font(item.Font, FontStyle.Bold); }
             lvm.SubItems.Add(item);
 
             for (int i = 0; i < stats.Length; ++i)
             {
-                item = new ListViewItem.ListViewSubItem(lvm, pkm.GetEV(i).ToString());
+                int ev = pkm.GetEV(i);
+                item = new ListViewItem.ListViewSubItem(lvm, ev.ToString());
                 item.Tag = (ColumnType)(ColumnType.EVHP + i);
+                if (ev >= 252) { item.Font = new Font(item.Font, FontStyle.Bold); }
                 lvm.SubItems.Add(item);
             }
 
